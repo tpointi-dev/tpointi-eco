@@ -358,11 +358,11 @@
 	},
 	"sources": {
 		"contracts/IBNBPrice.sol": {
-			"keccak256": "0x61a3e06fcc8b5c566a6d68bfc242305f4cc87023b62d89b36451f9fb9b3dc141",
+			"keccak256": "0xe9f8110757daeaa3db0e76a2a48f10cfeea679e4927af087e5c24d30f44fa4f7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://aa066bdf39f9101e3173ea3c3653dcf89f3f59bf00f757f239db8990961ab455",
-				"dweb:/ipfs/QmbqR3HwYduXhpx3RxvWFG1oQQvGXkRRds5cM56N3wezaK"
+				"bzz-raw://72add4bd90cddb9e84728064221091197e47e1e987004b3cba765166893b1de5",
+				"dweb:/ipfs/QmVuY8D41r97TyXjQPNnTuZzVAUyJxnBstmu4r1N1wsrsi"
 			]
 		},
 		"contracts/PTPPreSale.sol": {

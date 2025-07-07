@@ -123,6 +123,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getContractBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "getEqMode",
 				"outputs": [
 					{
@@ -227,6 +240,13 @@
 			},
 			{
 				"inputs": [],
+				"name": "toOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "usd",
 				"outputs": [
 					{
@@ -256,10 +276,6 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
-			},
-			{
-				"stateMutability": "payable",
-				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -378,11 +394,11 @@
 			]
 		},
 		"contracts/BNBPrice.sol": {
-			"keccak256": "0x265354e610779cd4937b65d09ed38b24c599b4ee72030159b13e06c0fb6d4cc7",
+			"keccak256": "0xd501e9e153b9537243344422fcf1deddd2a78a43302bd0818f6b3bf136c2dad4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5c7290fd9e19592ab6bff8be3f31b597c9d5ff287e349a21ab16c77b3082cca6",
-				"dweb:/ipfs/QmNiAEFShxdeX7h5em2e8X4U5kWydkuBrdnTCmiz8Xdh19"
+				"bzz-raw://a0c2aad19b4cc261fd8190c75d2ce15bf61db2ca346b7b72a2b2e6cb34fdae50",
+				"dweb:/ipfs/QmSJ2L3iTZkGtN1Z6gAFxX81XtghVFDha1FfXJ4RZrAntr"
 			]
 		}
 	},

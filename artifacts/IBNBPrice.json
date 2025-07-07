@@ -49,14 +49,23 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
-			"averageBnbToUsd()": "74fe28cc",
-			"averageUsdToBnb()": "208b3eca"
+			"bnbToUsd(uint8)": "6c7474da",
+			"getAverage()": "21055acb",
+			"getEqMode()": "026f0dbe",
+			"setEqMode()": "65a6cc2e",
+			"usdToBnb(uint8)": "c0404fa7"
 		}
 	},
 	"abi": [
 		{
-			"inputs": [],
-			"name": "averageBnbToUsd",
+			"inputs": [
+				{
+					"internalType": "uint8",
+					"name": "index",
+					"type": "uint8"
+				}
+			],
+			"name": "bnbToUsd",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -69,7 +78,51 @@
 		},
 		{
 			"inputs": [],
-			"name": "averageUsdToBnb",
+			"name": "getAverage",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getEqMode",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "setEqMode",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint8",
+					"name": "index",
+					"type": "uint8"
+				}
+			],
+			"name": "usdToBnb",
 			"outputs": [
 				{
 					"internalType": "uint256",
