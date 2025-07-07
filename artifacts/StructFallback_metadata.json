@@ -1,0 +1,79 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "age",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "isVerified",
+						"type": "bool"
+					}
+				],
+				"name": "PersonReceived",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"test.sol": "StructFallback"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"test.sol": {
+			"keccak256": "0xe8cf07f209cef409f8e57e4f94b6e5f7749036053d57e321b830590bed2382b3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8595879d882eda10b44b8c7b2fac54eb59df981d5bb3af77c0ef43bface94ade",
+				"dweb:/ipfs/QmVKCNe4biyZhuSBxP9nsAjKj7GCa3RT3dkNEREfhYpk7H"
+			]
+		}
+	},
+	"version": 1
+}

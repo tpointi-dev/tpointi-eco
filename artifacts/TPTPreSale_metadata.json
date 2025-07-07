@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.20+commit.a1b79de6"
+		"version": "0.8.30+commit.73712a01"
 	},
 	"language": "Solidity",
 	"output": {
@@ -8,13 +8,22 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "_initialPointPrice",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "_bnb",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_usd",
+						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
 			},
 			{
 				"inputs": [],
@@ -25,9 +34,15 @@
 			},
 			{
 				"inputs": [],
-				"name": "buyTPT",
-				"outputs": [],
-				"stateMutability": "payable",
+				"name": "bnb",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -41,7 +56,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "user",
+						"name": "_userAddress",
 						"type": "address"
 					},
 					{
@@ -75,11 +90,24 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "user",
+						"name": "_userAddress",
 						"type": "address"
 					}
 				],
 				"name": "getPurchaseCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getThisStepPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -132,11 +160,11 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "user",
+						"name": "_userAddress",
 						"type": "address"
 					}
 				],
-				"name": "getUserPoints",
+				"name": "getUserTPTBalance",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -150,13 +178,13 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "points",
+						"name": "_value",
 						"type": "uint256"
 					}
 				],
@@ -179,57 +207,47 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "purchaseWithOffer",
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_step",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "setTPTPrice",
 				"outputs": [],
-				"stateMutability": "payable",
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
+						"internalType": "uint8",
+						"name": "_step",
+						"type": "uint8"
 					}
 				],
-				"name": "purchases",
+				"name": "setThisStep",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "thisStep",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "bnbAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tptAmount",
-						"type": "uint256"
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "_newPrice",
-						"type": "uint256"
-					}
-				],
-				"name": "setPointPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -246,7 +264,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
 				"name": "tptPrice",
 				"outputs": [
 					{
@@ -259,14 +283,8 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "userAddressById",
+				"inputs": [],
+				"name": "usd",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -299,17 +317,27 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"name": "userTPTBalance",
-				"outputs": [
-					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"name": "users",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "walletAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tptBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "hasOffer",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -348,7 +376,7 @@
 		"compilationTarget": {
 			"contracts/PTPPreSale.sol": "TPTPreSale"
 		},
-		"evmVersion": "shanghai",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -361,11 +389,11 @@
 	},
 	"sources": {
 		"contracts/PTPPreSale.sol": {
-			"keccak256": "0x1581478e6c9b6e2652ec3bec8f4c7c4ceb6df2845dfe5010fe0af4e3f375630c",
+			"keccak256": "0xcebb99b1eab48239bb36126208d653632d0dc64dde62b0c8af52d10359334501",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1e6bc455c7b4d2a00e491fcf3b488da50adf52d1ab69dc9b82ab9a62a8e60b37",
-				"dweb:/ipfs/QmTh7dnibf8TgfprP8R8RpPC6duEeiTAEWvkvtbZRZRond"
+				"bzz-raw://d7556eed8614ee8829ae4a8babf10e1c5bf0e96fb1d5efdc3a896912e6caf646",
+				"dweb:/ipfs/QmcVMULjJs9bR5XPZD1zFEeSRFuM7amZiD3DpfXh9LfVTZ"
 			]
 		}
 	},

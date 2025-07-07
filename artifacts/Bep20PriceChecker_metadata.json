@@ -1,0 +1,374 @@
+{
+	"compiler": {
+		"version": "0.7.6+commit.7338295f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_bep20Token",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_factory",
+						"type": "address"
+					},
+					{
+						"internalType": "uint24",
+						"name": "_fee",
+						"type": "uint24"
+					}
+				],
+				"name": "addPoolBep20Token",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_factory",
+						"type": "address"
+					},
+					{
+						"internalType": "uint24",
+						"name": "_fee",
+						"type": "uint24"
+					}
+				],
+				"name": "addPoolUSD",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "averageBep20TokenBNB",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "average",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "averageUSDbnb",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "average",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bep20Token",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bep20Token_uSD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "bep20Token_usd",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "bnb",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "index",
+						"type": "uint8"
+					}
+				],
+				"name": "checkPriceBep20Token",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "index",
+						"type": "uint8"
+					}
+				],
+				"name": "checkPriceUSD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "poolsBep20Token",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "poolsUSD",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "index",
+						"type": "uint8"
+					}
+				],
+				"name": "removePoolBep20Token",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "index",
+						"type": "uint8"
+					}
+				],
+				"name": "removePoolUSD",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "usd",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BNBPrice.sol": "Bep20PriceChecker"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@pancakeswap/v3-core/contracts/interfaces/IPancakeV3Factory.sol": {
+			"keccak256": "0x90c41c199dbf1cb239937bd562d764e7fa13c9749fad324a162b0d0545012fb7",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://558aeed10a456cef5ef0842aeac6f9328a5a0ebf14c7e0b350453bfc3070481c",
+				"dweb:/ipfs/QmYKBfzf99ikop2dbqLVEn38FY9PZt5bjL1uLkRtu8VAFT"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/IPancakeV3Pool.sol": {
+			"keccak256": "0x4f22208838b7b85d2d48e9a92a0cee1e5bf5f12fe0f2f5cc521ab1adabb68fbb",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://f39833bc732ff76e8abe44206981f115116e3c0f4f867099d1c1a3621febefea",
+				"dweb:/ipfs/QmcSb8EyNu6y6sueWZmc6uYbPrWz3Z38RuLipeWB2E5JRc"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/pool/IPancakeV3PoolActions.sol": {
+			"keccak256": "0x78ed1c130111169f443c55618ff2d290ce0630b1d016cdeda3a66e12816041f6",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://230ba84dfb2cbaadffe4554d9b74ddc7e6b696e51e5e9f327be469a47c332137",
+				"dweb:/ipfs/Qmapm23aouHCAMVxLG6eRfUY134QZzDvsAnXqX3UnpdA2o"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/pool/IPancakeV3PoolDerivedState.sol": {
+			"keccak256": "0x45a9f30f562b5d0d55b311149c32df5cbcf0c7cfcb72aff2637a29794b06d4b6",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://a6a90b9532960842ebee061f6acefc680ae06bfd73e7c3536dd67f566137ded8",
+				"dweb:/ipfs/QmPDfMp1k417dMPJAcFK4s6nkFX7GxiC8vtis8eAA7Jrk5"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/pool/IPancakeV3PoolEvents.sol": {
+			"keccak256": "0xab6ac5bd9ceadd20e3b60bb079489a2942c60f2697a6e145c585ee49b281534c",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://50df58f97d6b423605489b3dfad69b0e4f68197d02950d6858072b1bffe5fa44",
+				"dweb:/ipfs/QmQGa1CGYRqkr4Mv85z7A7vGRAmCgmpU2hikMuRURu7AUA"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/pool/IPancakeV3PoolImmutables.sol": {
+			"keccak256": "0x8cde7ad64b4dced2fa40e91e3c8ffd0eaaf86954c65a1c0f7abc35f1af3a89d0",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://6dda14811ba9ddf552ecf2c6b7414ea9eda70421ffa05830baec1c12c157fa77",
+				"dweb:/ipfs/QmbLT6zzSxFAtD1NsZRPpuDRXKtgQ8vbg3P6NcSRA2K4Qh"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/pool/IPancakeV3PoolOwnerActions.sol": {
+			"keccak256": "0x5c522018f94c194608fd0f3f6bb1c7373d53496f5b6cb5e916b7a8d61fc7caf1",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://4e3b53a05473e3862a40c30bc9ef64c3d835975297577a790309253917d990e9",
+				"dweb:/ipfs/QmRSrGUM3AEXjBBWvrHzdvz4ibjAYDFZzfRZoXRnFDz9vi"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/interfaces/pool/IPancakeV3PoolState.sol": {
+			"keccak256": "0xbf4a0b7b13de3cb73722a74cfee8b34fa250855373cd17e54a093f9054efbc61",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://a238096b300063a853ccad81ff3141b64784c7ae18f3e254701fdc8763f3b885",
+				"dweb:/ipfs/Qmd1RiqVgZgsjdUDAmpHnp9myXDRTJyFkWyNZmZWS4bXRT"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/libraries/FullMath.sol": {
+			"keccak256": "0xbefbff1aed686bac4be2ed1569a29f88649cfa17c45f417db81d6a2202fc1518",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://6dac2bb25c624ab93711649cfa5735603c37285964c102e456b81cfe64d862b6",
+				"dweb:/ipfs/QmRzLrrJ4QSmaE2hRmB69PzxTewavysupU3hmZgezLEQ72"
+			]
+		},
+		"@pancakeswap/v3-core/contracts/libraries/TickMath.sol": {
+			"keccak256": "0xda8c2c0b12d2976acfd364453ba5f5bf0117ba3c91175ee9e1067d3fb26944d9",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://3f3d2d7c2723c91830c74d96292f28fc1cfe28d388cdb9c1a5ebadb4c2b96f81",
+				"dweb:/ipfs/QmYU4wk8MEm33wVWR38LoncvR7b8PP1mLuGBKX3dUpYJVE"
+			]
+		},
+		"@pancakeswap/v3-periphery/contracts/libraries/OracleLibrary.sol": {
+			"keccak256": "0x862a211d6bacea995e9c60c4ad20abfdf7674b83e39208798aec96efd8b959ff",
+			"license": "GPL-2.0-or-later",
+			"urls": [
+				"bzz-raw://231e94c1635744b213f9362642268d9f42291786f297912d71f86552ce84de3a",
+				"dweb:/ipfs/QmT9oabKX9YPbdGhDntTUUFq6Sn6i5QYn7JFLVXcFbsimL"
+			]
+		},
+		"contracts/BNBPrice.sol": {
+			"keccak256": "0xf284fe9c7a112a2411a4b0c350e759329bfbf01f24a061b576f50bbdcf03caff",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a9eec4c89ebe7c4c1a35c96a6a2d755bf6c565990fd135d72a5a3f7f112a74ef",
+				"dweb:/ipfs/Qmc62y3NsxgK3Ux35Acch1vRM1iBfrLJqYHxzYrLxTn8yX"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,59 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "bep20Token_uSD",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/IBNBPrice.sol": "IPriceChecker"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/IBNBPrice.sol": {
+			"keccak256": "0x7cd24eb50fe9bb167977e6124d2aa1f46952f799180df2bf9404819f8e9e4039",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e8fdc435a26e8e2d3af9f14ddae658e6b8a0fded76368a277096f5f729520510",
+				"dweb:/ipfs/QmV3sErzcodezYoBocBNQskTSgMS85g1bqiUC6QMGmUPJt"
+			]
+		}
+	},
+	"version": 1
+}
