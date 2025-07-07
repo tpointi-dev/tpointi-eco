@@ -9,19 +9,11 @@ contract TPTPreSale {
     bool internal locked;
     
     // Pricing
-
     uint8 public thisStep;
     mapping(uint8 => uint) public tptPrice;
     IBNBPrice iBNBPrice;
 
-
-
-
-
     // User Details
-    // 
-    // 
-    // Total Users
     uint256 public totalUsers;
 
     struct Purchase {
@@ -38,14 +30,8 @@ contract TPTPreSale {
         Purchase[] purchaseList;
     }
 
-    // Unic Id for users
     mapping(address => uint256) public userId;
-    // Unic user for each id
     mapping(uint256 => UserInfo) public users;
-    
-
-
-
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only owner");
@@ -71,18 +57,38 @@ contract TPTPreSale {
     }
 
 
+    fallback() external payable  {
+        buyTPT( abi.decode(msg.data, (bool)) );
+        // emit OfferReceived(msg.sender, offer);
+    }
+
+    receive() external payable { 
+        buyTPT( false );
+        // emit OfferReceived(msg.sender, offer);
+    }
+
+    // 100000000000000
+    function getBNBPrice() public payable returns ( uint bnbPrice, string memory mode){
+        (bnbPrice, mode) = iBNBPrice.getAverage{value : 1e14}(); // 1e14 => getPriceTax
+        
+    }
+
+
+
+
     // Purchase tpt
     function buyTPT( bool _useOffer ) internal pauseable reentrancy {
-        uint256 tptAmount = _useOffer ? msg.value * 1e18 / tptPrice[thisStep] : (msg.value * 1e18 / tptPrice[thisStep]) * 2 ;
+        require( msg.value >= 5*1e16 , "Send more BNB to buy TPT");
+        require( msg.data.length >= 32 , "Invalid data length");
+
+        uint tptAmount = _useOffer 
+            ? msg.value * 1e18 / tptPrice[thisStep] 
+            : (msg.value * 1e18 / tptPrice[thisStep]) * 2 
+            ;
 
         if (userId[msg.sender] == 0) {
-
-
-            
             totalUsers++;
             userId[msg.sender] = totalUsers;
-
-
 
             UserInfo storage userInfo = users[totalUsers];
             userInfo.walletAddress = msg.sender;
@@ -90,16 +96,9 @@ contract TPTPreSale {
             userInfo.hasOffer = true;
             // Save User
             users[totalUsers] = userInfo;
-
-
-
             // users[totalUsers].purchaseList.push(Purchase(block.timestamp, msg.value, 0 , thisStep));
         }
         
-
-
-
-
 
         users[totalUsers].tptBalance = tptAmount;
     }
@@ -119,12 +118,10 @@ contract TPTPreSale {
         return (p.timestamp, p.bnbAmount, p.tptAmount);
     }
 
-    // آیدی یک کاربر خاص
     function getUserId(address user) external view returns (uint256) {
         return userId[user];
     }
 
-    // آدرس کاربر بر اساس آیدی
     function getUserAddress(uint256 id) external view returns (address) {
         return users[id].walletAddress;
     }
@@ -145,34 +142,6 @@ contract TPTPreSale {
 
 
 
-
-    function buyTPTWithOffer() public {}
-
-
-
-    function activeOffer() public {
-
-
-    }
-
-
-
-    fallback() external payable  {
-        require( msg.value > 0, "Send BNB to buy TPT");
-        require( msg.data.length >= 32 , "Invalid data length");
-        buyTPT( abi.decode(msg.data, (bool)) );
-
-
-        // emit OfferReceived(msg.sender, offer);
-    }
-
-    receive() external payable { 
-        require( msg.value > 0, "Send BNB to buy TPT");
-        buyTPT( false );
-    }
-
-
-
     function setThisStep(uint8 _step) public onlyOwner {
         thisStep = _step;
     }
@@ -184,4 +153,10 @@ contract TPTPreSale {
     function getThisStepPrice() public view returns (uint256) {
         return tptPrice[thisStep];
     }
+
+    function setIBNBPrice(address _bnbprice) public onlyOwner{
+        iBNBPrice = IBNBPrice(_bnbprice);
+    }
+
+
 }

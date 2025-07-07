@@ -22,16 +22,20 @@
 			},
 			{
 				"inputs": [],
-				"name": "activeOffer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "buyTPTWithOffer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "getBNBPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "bnbPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "mode",
+						"type": "string"
+					}
+				],
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -186,6 +190,19 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_bnbprice",
+						"type": "address"
+					}
+				],
+				"name": "setIBNBPrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -366,11 +383,11 @@
 			]
 		},
 		"contracts/PTPPreSale.sol": {
-			"keccak256": "0xceb44c0f136c4c95037cb12126308e309003bc9a7f303b32701a746361c8f43b",
+			"keccak256": "0x3e4d05b67161555527e4d398b88efa8cfed34771d94d7aa12d736e8dc838d88a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a3dbe49127f3cf313b597fd22a0a9bdc9a326aac8c0e9d06502de4939175dd32",
-				"dweb:/ipfs/QmSH2BMQHw1S5BykEJ8xmJC7ryubwaL74hxouHA3chDcqj"
+				"bzz-raw://6a01ca2561272fc412aa336ff6d7d26279b859cc7e17d19c709b2834b6bc594e",
+				"dweb:/ipfs/QmZyoRqfh89xGivuXBmWcZ4Q4ZJksg9ShAGmtUpNR98tkV"
 			]
 		}
 	},
