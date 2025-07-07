@@ -45,7 +45,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/IBNBPrice.sol": "IPriceChecker"
+			"contracts/IBNBPrice.sol": "IBNBPri"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -60,11 +60,11 @@
 	},
 	"sources": {
 		"contracts/IBNBPrice.sol": {
-			"keccak256": "0x1e403f39aca47f8927ba0ce5925fcc77a4f9fcfc2ceb01c4c91154c650010b1c",
+			"keccak256": "0x0ebf9bf310567764c683910d6e869cd4924ac45e5ff3adbb43c4799c371e26c3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8e61490c62167d7897c0159bc8850fa9b021f2a99be6b4ddc121fb29468f714a",
-				"dweb:/ipfs/QmfQZpGzsRC94uFr39GWSYAJzX21JsxTHkz9RUn5DGGfA3"
+				"bzz-raw://042d39e9733fe9a902ae2f6be3f73ace693e0bcdcaf12518e0048d53d73b1d4c",
+				"dweb:/ipfs/QmdpWANojGbF8Z9GBjz8FJxgjb3un3oKjNe8oAonMXJ9ir"
 			]
 		}
 	},

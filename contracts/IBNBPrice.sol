@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-interface IPriceChecker {
+interface IBNBPrice {
 
-    function bep20Token_uSD() external view returns (uint);
+    function averageBnbToUsd() external view returns (uint);
+    function averageUsdToBnb() external view returns (uint);
 }

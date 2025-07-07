@@ -1,16 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
+import "./IBNBPrice.sol";
+
 contract TPTPreSale {
     // Controllers
     address public owner;
     bool internal locked;
     
     // Pricing
-    address public immutable bnb;
-    address public immutable usd;
+
     uint8 public thisStep;
     mapping(uint8 => uint) public tptPrice;
+    IBNBPrice iBNBPrice;
+
 
 
 
@@ -60,18 +63,11 @@ contract TPTPreSale {
         _;
         locked = false;
     }
-    
 
-
-    constructor(address _bnb , address _usd ) {
+    constructor(address _iBnbPrice) {
         owner = msg.sender;
         thisStep = 0;
-
-
-        // Wraped bnb : 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
-        bnb = _bnb;
-        // Wraped usd : 0x55d398326f99059fF775485246999027B3197955
-        usd = _usd;
+        iBNBPrice = IBNBPrice(_iBnbPrice);
     }
 
 

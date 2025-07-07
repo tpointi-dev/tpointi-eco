@@ -22,6 +22,25 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "tickPrice",
+						"type": "uint256"
+					}
+				],
+				"name": "callAverage",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -37,19 +56,6 @@
 				"name": "addPoolUSD",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "averageUSDbnb",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "average",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -73,7 +79,7 @@
 						"type": "uint8"
 					}
 				],
-				"name": "checkPriceUSD",
+				"name": "bnbToUsd",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -85,13 +91,70 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAverage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getEqMode",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "address payable",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "poolsLenght",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -143,6 +206,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "setEqMode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -167,6 +237,29 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "index",
+						"type": "uint8"
+					}
+				],
+				"name": "usdToBnb",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -285,11 +378,11 @@
 			]
 		},
 		"contracts/BNBPrice.sol": {
-			"keccak256": "0x906059ff800ba90cca62c49261969e5e52d0020ddd827a23a32c4a8ad343030f",
+			"keccak256": "0x265354e610779cd4937b65d09ed38b24c599b4ee72030159b13e06c0fb6d4cc7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ae3b48c6ec71b247bef2efb240e4ce004b57406899182ab495e29e97c69abf15",
-				"dweb:/ipfs/QmciUhWQRU3YxUzFtcECDQKAemRBknP4PFXBFE9aH6Htwj"
+				"bzz-raw://5c7290fd9e19592ab6bff8be3f31b597c9d5ff287e349a21ab16c77b3082cca6",
+				"dweb:/ipfs/QmNiAEFShxdeX7h5em2e8X4U5kWydkuBrdnTCmiz8Xdh19"
 			]
 		}
 	},

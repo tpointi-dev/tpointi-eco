@@ -9,12 +9,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "_bnb",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "_usd",
+						"name": "_iBnbPrice",
 						"type": "address"
 					}
 				],
@@ -30,19 +25,6 @@
 				"name": "activeOffer",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "bnb",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -283,19 +265,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "usd",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -388,12 +357,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/PTPPreSale.sol": {
-			"keccak256": "0xcebb99b1eab48239bb36126208d653632d0dc64dde62b0c8af52d10359334501",
+		"contracts/IBNBPrice.sol": {
+			"keccak256": "0x61a3e06fcc8b5c566a6d68bfc242305f4cc87023b62d89b36451f9fb9b3dc141",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d7556eed8614ee8829ae4a8babf10e1c5bf0e96fb1d5efdc3a896912e6caf646",
-				"dweb:/ipfs/QmcVMULjJs9bR5XPZD1zFEeSRFuM7amZiD3DpfXh9LfVTZ"
+				"bzz-raw://aa066bdf39f9101e3173ea3c3653dcf89f3f59bf00f757f239db8990961ab455",
+				"dweb:/ipfs/QmbqR3HwYduXhpx3RxvWFG1oQQvGXkRRds5cM56N3wezaK"
+			]
+		},
+		"contracts/PTPPreSale.sol": {
+			"keccak256": "0xceb44c0f136c4c95037cb12126308e309003bc9a7f303b32701a746361c8f43b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a3dbe49127f3cf313b597fd22a0a9bdc9a326aac8c0e9d06502de4939175dd32",
+				"dweb:/ipfs/QmSH2BMQHw1S5BykEJ8xmJC7ryubwaL74hxouHA3chDcqj"
 			]
 		}
 	},
