@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.30+commit.73712a01"
+		"version": "0.8.24+commit.e11b9ed9"
 	},
 	"language": "Solidity",
 	"output": {
@@ -378,9 +378,9 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/TPTPreSale.sol": "TPTPreSale"
+			"contracts/TPTPreSale_flattened.sol": "TPTPreSale"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "cancun",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -392,20 +392,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/IBNBPrice.sol": {
-			"keccak256": "0x1b6007441d78a87b106d1c4693cd9a8dc2c118bdb4ad6d509450cbeb3ffab70c",
+		"contracts/TPTPreSale_flattened.sol": {
+			"keccak256": "0x297ef062f2479f205a9719fe3bad1a6c039074fd878202ef70fdd559c15a00f7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6a3a1e33b9186f450102f84a751a3e0d2f651f7c78dade4d24de18c19968702e",
-				"dweb:/ipfs/QmXHMvJGNPoNRkqZna5SEMoxoGo4WuseiRCXAJg5FHKoyZ"
-			]
-		},
-		"contracts/TPTPreSale.sol": {
-			"keccak256": "0xda6914d3b774b1e2515c753376a5daac5a0389016bee405b84a2fd24d61955d4",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8300d0b401d358adef8369cd8ec1e79f382fb7428f13f7971778c7692a293b5b",
-				"dweb:/ipfs/QmQfpvidoTyYiJprAMrPBakbzLEMQWBKrgLFbudohp49Sq"
+				"bzz-raw://7295679471d77325167e505871a3c01f3a0cccc593117388642d6862192ad60d",
+				"dweb:/ipfs/QmXEsVVXdWjYxUASA4XUyrFpmDekTfFWA7URtiGyxcnceD"
 			]
 		}
 	},
