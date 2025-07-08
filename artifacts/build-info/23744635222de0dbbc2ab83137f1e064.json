@@ -1,5 +1,5 @@
 {
-	"id": "d12c82f22e85ff7e57f8bf3ef2cf6d8a",
+	"id": "23744635222de0dbbc2ab83137f1e064",
 	"_format": "hh-sol-build-info-1",
 	"solcVersion": "0.8.30",
 	"solcLongVersion": "0.8.30+commit.73712a01",
@@ -7,7 +7,7 @@
 		"language": "Solidity",
 		"sources": {
 			"contracts/IBNBPrice.sol": {
-				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\ninterface IBNBPrice {\r\n     \r\n    function setEqMode() external; \r\n    function getEqMode() external view returns( bool);\r\n    function getEqModeString() external view returns( string memory);\r\n    function viewAverage() external view returns (uint256);\r\n    function bnbToUsd(uint8 index) external view  returns (uint);\r\n    function usdToBnb(uint8 index) external view  returns (uint);\r\n}"
+				"content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\ninterface IBNBPrice {\r\n     \r\n    function setEqMode() external; \r\n    function getEqMode() external view returns( bool);\r\n    function getEqModeString() external view returns( string memory);\r\n    function viewAverage() external view returns (uint256);\r\n    function viewAverageStatic() external view returns (uint256);\r\n    function bnbToUsd(uint8 index) external view  returns (uint);\r\n    function usdToBnb(uint8 index) external view  returns (uint);\r\n}"
 			}
 		},
 		"settings": {
@@ -35,7 +35,8 @@
 					]
 				}
 			},
-			"remappings": []
+			"remappings": [],
+			"evmVersion": "berlin"
 		}
 	},
 	"output": {
@@ -126,6 +127,19 @@
 							],
 							"stateMutability": "view",
 							"type": "function"
+						},
+						{
+							"inputs": [],
+							"name": "viewAverageStatic",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "",
+									"type": "uint256"
+								}
+							],
+							"stateMutability": "view",
+							"type": "function"
 						}
 					],
 					"devdoc": {
@@ -160,10 +174,11 @@
 							"getEqModeString()": "a1c6a405",
 							"setEqMode()": "65a6cc2e",
 							"usdToBnb(uint8)": "c0404fa7",
-							"viewAverage()": "e03d1632"
+							"viewAverage()": "e03d1632",
+							"viewAverageStatic()": "09cf28da"
 						}
 					},
-					"metadata": "{\"compiler\":{\"version\":\"0.8.30+commit.73712a01\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"name\":\"bnbToUsd\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getEqMode\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getEqModeString\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setEqMode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"name\":\"usdToBnb\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAverage\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/IBNBPrice.sol\":\"IBNBPrice\"},\"evmVersion\":\"prague\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/IBNBPrice.sol\":{\"keccak256\":\"0x9cf2b11ce5a04a43025d8c2adebe075cc4f73d8295e0dc23278856ed265ea547\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4dd6927a5da7a974dfe0740b8431943c69153f8733948ebdcb1ddcf79af05dda\",\"dweb:/ipfs/QmNYQReHsmFoAKdSNpoSK7kCmB1SE4DYesM2kXDCydjH2d\"]}},\"version\":1}",
+					"metadata": "{\"compiler\":{\"version\":\"0.8.30+commit.73712a01\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"name\":\"bnbToUsd\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getEqMode\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getEqModeString\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"setEqMode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"index\",\"type\":\"uint8\"}],\"name\":\"usdToBnb\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAverage\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"viewAverageStatic\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/IBNBPrice.sol\":\"IBNBPrice\"},\"evmVersion\":\"berlin\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/IBNBPrice.sol\":{\"keccak256\":\"0x1b6007441d78a87b106d1c4693cd9a8dc2c118bdb4ad6d509450cbeb3ffab70c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://6a3a1e33b9186f450102f84a751a3e0d2f651f7c78dade4d24de18c19968702e\",\"dweb:/ipfs/QmXHMvJGNPoNRkqZna5SEMoxoGo4WuseiRCXAJg5FHKoyZ\"]}},\"version\":1}",
 					"storageLayout": {
 						"storage": [],
 						"types": null
@@ -182,10 +197,10 @@
 					"absolutePath": "contracts/IBNBPrice.sol",
 					"exportedSymbols": {
 						"IBNBPrice": [
-							34
+							39
 						]
 					},
-					"id": 35,
+					"id": 40,
 					"license": "MIT",
 					"nodeType": "SourceUnit",
 					"nodes": [
@@ -207,9 +222,9 @@
 							"contractDependencies": [],
 							"contractKind": "interface",
 							"fullyImplemented": false,
-							"id": 34,
+							"id": 39,
 							"linearizedBaseContracts": [
-								34
+								39
 							],
 							"name": "IBNBPrice",
 							"nameLocation": "71:9:0",
@@ -236,7 +251,7 @@
 										"parameters": [],
 										"src": "124:0:0"
 									},
-									"scope": 34,
+									"scope": 39,
 									"src": "95:30:0",
 									"stateMutability": "nonpayable",
 									"virtual": false,
@@ -291,7 +306,7 @@
 										],
 										"src": "174:7:0"
 									},
-									"scope": 34,
+									"scope": 39,
 									"src": "132:50:0",
 									"stateMutability": "view",
 									"virtual": false,
@@ -346,7 +361,7 @@
 										],
 										"src": "236:16:0"
 									},
-									"scope": 34,
+									"scope": 39,
 									"src": "188:65:0",
 									"stateMutability": "view",
 									"virtual": false,
@@ -401,68 +416,40 @@
 										],
 										"src": "304:9:0"
 									},
-									"scope": 34,
+									"scope": 39,
 									"src": "259:55:0",
 									"stateMutability": "view",
 									"virtual": false,
 									"visibility": "external"
 								},
 								{
-									"functionSelector": "6c7474da",
-									"id": 26,
+									"functionSelector": "09cf28da",
+									"id": 24,
 									"implemented": false,
 									"kind": "function",
 									"modifiers": [],
-									"name": "bnbToUsd",
-									"nameLocation": "329:8:0",
+									"name": "viewAverageStatic",
+									"nameLocation": "329:17:0",
 									"nodeType": "FunctionDefinition",
 									"parameters": {
-										"id": 22,
+										"id": 20,
 										"nodeType": "ParameterList",
-										"parameters": [
-											{
-												"constant": false,
-												"id": 21,
-												"mutability": "mutable",
-												"name": "index",
-												"nameLocation": "344:5:0",
-												"nodeType": "VariableDeclaration",
-												"scope": 26,
-												"src": "338:11:0",
-												"stateVariable": false,
-												"storageLocation": "default",
-												"typeDescriptions": {
-													"typeIdentifier": "t_uint8",
-													"typeString": "uint8"
-												},
-												"typeName": {
-													"id": 20,
-													"name": "uint8",
-													"nodeType": "ElementaryTypeName",
-													"src": "338:5:0",
-													"typeDescriptions": {
-														"typeIdentifier": "t_uint8",
-														"typeString": "uint8"
-													}
-												},
-												"visibility": "internal"
-											}
-										],
-										"src": "337:13:0"
+										"parameters": [],
+										"src": "346:2:0"
 									},
 									"returnParameters": {
-										"id": 25,
+										"id": 23,
 										"nodeType": "ParameterList",
 										"parameters": [
 											{
 												"constant": false,
-												"id": 24,
+												"id": 22,
 												"mutability": "mutable",
 												"name": "",
 												"nameLocation": "-1:-1:-1",
 												"nodeType": "VariableDeclaration",
-												"scope": 26,
-												"src": "375:4:0",
+												"scope": 24,
+												"src": "372:7:0",
 												"stateVariable": false,
 												"storageLocation": "default",
 												"typeDescriptions": {
@@ -470,10 +457,10 @@
 													"typeString": "uint256"
 												},
 												"typeName": {
-													"id": 23,
-													"name": "uint",
+													"id": 21,
+													"name": "uint256",
 													"nodeType": "ElementaryTypeName",
-													"src": "375:4:0",
+													"src": "372:7:0",
 													"typeDescriptions": {
 														"typeIdentifier": "t_uint256",
 														"typeString": "uint256"
@@ -482,35 +469,35 @@
 												"visibility": "internal"
 											}
 										],
-										"src": "374:6:0"
+										"src": "371:9:0"
 									},
-									"scope": 34,
+									"scope": 39,
 									"src": "320:61:0",
 									"stateMutability": "view",
 									"virtual": false,
 									"visibility": "external"
 								},
 								{
-									"functionSelector": "c0404fa7",
-									"id": 33,
+									"functionSelector": "6c7474da",
+									"id": 31,
 									"implemented": false,
 									"kind": "function",
 									"modifiers": [],
-									"name": "usdToBnb",
+									"name": "bnbToUsd",
 									"nameLocation": "396:8:0",
 									"nodeType": "FunctionDefinition",
 									"parameters": {
-										"id": 29,
+										"id": 27,
 										"nodeType": "ParameterList",
 										"parameters": [
 											{
 												"constant": false,
-												"id": 28,
+												"id": 26,
 												"mutability": "mutable",
 												"name": "index",
 												"nameLocation": "411:5:0",
 												"nodeType": "VariableDeclaration",
-												"scope": 33,
+												"scope": 31,
 												"src": "405:11:0",
 												"stateVariable": false,
 												"storageLocation": "default",
@@ -519,7 +506,7 @@
 													"typeString": "uint8"
 												},
 												"typeName": {
-													"id": 27,
+													"id": 25,
 													"name": "uint8",
 													"nodeType": "ElementaryTypeName",
 													"src": "405:5:0",
@@ -534,17 +521,17 @@
 										"src": "404:13:0"
 									},
 									"returnParameters": {
-										"id": 32,
+										"id": 30,
 										"nodeType": "ParameterList",
 										"parameters": [
 											{
 												"constant": false,
-												"id": 31,
+												"id": 29,
 												"mutability": "mutable",
 												"name": "",
 												"nameLocation": "-1:-1:-1",
 												"nodeType": "VariableDeclaration",
-												"scope": 33,
+												"scope": 31,
 												"src": "442:4:0",
 												"stateVariable": false,
 												"storageLocation": "default",
@@ -553,7 +540,7 @@
 													"typeString": "uint256"
 												},
 												"typeName": {
-													"id": 30,
+													"id": 28,
 													"name": "uint",
 													"nodeType": "ElementaryTypeName",
 													"src": "442:4:0",
@@ -567,20 +554,103 @@
 										],
 										"src": "441:6:0"
 									},
-									"scope": 34,
+									"scope": 39,
 									"src": "387:61:0",
+									"stateMutability": "view",
+									"virtual": false,
+									"visibility": "external"
+								},
+								{
+									"functionSelector": "c0404fa7",
+									"id": 38,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "usdToBnb",
+									"nameLocation": "463:8:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 34,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 33,
+												"mutability": "mutable",
+												"name": "index",
+												"nameLocation": "478:5:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 38,
+												"src": "472:11:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint8",
+													"typeString": "uint8"
+												},
+												"typeName": {
+													"id": 32,
+													"name": "uint8",
+													"nodeType": "ElementaryTypeName",
+													"src": "472:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint8",
+														"typeString": "uint8"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "471:13:0"
+									},
+									"returnParameters": {
+										"id": 37,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 36,
+												"mutability": "mutable",
+												"name": "",
+												"nameLocation": "-1:-1:-1",
+												"nodeType": "VariableDeclaration",
+												"scope": 38,
+												"src": "509:4:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 35,
+													"name": "uint",
+													"nodeType": "ElementaryTypeName",
+													"src": "509:4:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "508:6:0"
+									},
+									"scope": 39,
+									"src": "454:61:0",
 									"stateMutability": "view",
 									"virtual": false,
 									"visibility": "external"
 								}
 							],
-							"scope": 35,
-							"src": "61:390:0",
+							"scope": 40,
+							"src": "61:457:0",
 							"usedErrors": [],
 							"usedEvents": []
 						}
 					],
-					"src": "33:418:0"
+					"src": "33:485:0"
 				},
 				"id": 0
 			}

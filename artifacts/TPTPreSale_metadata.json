@@ -21,171 +21,6 @@
 				"type": "fallback"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "bool",
-						"name": "_useOffer",
-						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					}
-				],
-				"name": "calcAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "index",
-						"type": "uint256"
-					}
-				],
-				"name": "getPurchase",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "bnbAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tptAmount",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					}
-				],
-				"name": "getPurchaseCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getThisStepPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"name": "getUserAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getUserId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					}
-				],
-				"name": "getUserTPTBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"name": "grantPointsById",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "owner",
 				"outputs": [
@@ -209,57 +44,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address payable",
-						"name": "_priceContract",
-						"type": "address"
-					}
-				],
-				"name": "setIBNBPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "setIBNBPriceMode",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint8",
-						"name": "_step",
-						"type": "uint8"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					}
-				],
-				"name": "setTPTPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint8",
-						"name": "_step",
-						"type": "uint8"
-					}
-				],
-				"name": "setThisStep",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -356,19 +140,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address payable",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "withdrawAll",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -388,7 +159,7 @@
 		"compilationTarget": {
 			"contracts/TPTPreSale.sol": "TPTPreSale"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "berlin",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -401,19 +172,19 @@
 	},
 	"sources": {
 		"contracts/IBNBPrice.sol": {
-			"keccak256": "0x9cf2b11ce5a04a43025d8c2adebe075cc4f73d8295e0dc23278856ed265ea547",
+			"keccak256": "0x1b6007441d78a87b106d1c4693cd9a8dc2c118bdb4ad6d509450cbeb3ffab70c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4dd6927a5da7a974dfe0740b8431943c69153f8733948ebdcb1ddcf79af05dda",
-				"dweb:/ipfs/QmNYQReHsmFoAKdSNpoSK7kCmB1SE4DYesM2kXDCydjH2d"
+				"bzz-raw://6a3a1e33b9186f450102f84a751a3e0d2f651f7c78dade4d24de18c19968702e",
+				"dweb:/ipfs/QmXHMvJGNPoNRkqZna5SEMoxoGo4WuseiRCXAJg5FHKoyZ"
 			]
 		},
 		"contracts/TPTPreSale.sol": {
-			"keccak256": "0xd6f8fae7c2902633634ef8f78dc1f84e9bac7c9c528cdb13bace67159ae14451",
+			"keccak256": "0x0860cd2f75de7d6fd982f5a9c97f640a5d060592090b3c75aa064c24e84b4c67",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d52b7d401dafc9cbf9b0193da8bfe67a421a9092ee7416505846c96c8c442293",
-				"dweb:/ipfs/QmP1L94A7VJWXE3xbJtQsqcA4hPB3DdUKDLsT27Zp8Uhz1"
+				"bzz-raw://cf9520a8b0e0c553ac4eeb605679afcf9daebad652278aa4ce083ff1636dcfef",
+				"dweb:/ipfs/QmavBeDFVnLUidMLeFYFgoSvmhymLPSZXEnxk75rQteQDC"
 			]
 		}
 	},

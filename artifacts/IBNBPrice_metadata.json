@@ -88,6 +88,19 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewAverageStatic",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -105,7 +118,7 @@
 		"compilationTarget": {
 			"contracts/IBNBPrice.sol": "IBNBPrice"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "berlin",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -118,11 +131,11 @@
 	},
 	"sources": {
 		"contracts/IBNBPrice.sol": {
-			"keccak256": "0x9cf2b11ce5a04a43025d8c2adebe075cc4f73d8295e0dc23278856ed265ea547",
+			"keccak256": "0x1b6007441d78a87b106d1c4693cd9a8dc2c118bdb4ad6d509450cbeb3ffab70c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4dd6927a5da7a974dfe0740b8431943c69153f8733948ebdcb1ddcf79af05dda",
-				"dweb:/ipfs/QmNYQReHsmFoAKdSNpoSK7kCmB1SE4DYesM2kXDCydjH2d"
+				"bzz-raw://6a3a1e33b9186f450102f84a751a3e0d2f651f7c78dade4d24de18c19968702e",
+				"dweb:/ipfs/QmXHMvJGNPoNRkqZna5SEMoxoGo4WuseiRCXAJg5FHKoyZ"
 			]
 		}
 	},

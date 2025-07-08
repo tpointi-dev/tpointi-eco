@@ -1,0 +1,61 @@
+{
+	"compiler": {
+		"version": "0.7.6+commit.7338295f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"stateVariables": {
+				"MAX_SQRT_RATIO": {
+					"details": "The maximum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MAX_TICK)"
+				},
+				"MAX_TICK": {
+					"details": "The maximum tick that may be passed to #getSqrtRatioAtTick computed from log base 1.0001 of 2**128"
+				},
+				"MIN_SQRT_RATIO": {
+					"details": "The minimum value that can be returned from #getSqrtRatioAtTick. Equivalent to getSqrtRatioAtTick(MIN_TICK)"
+				},
+				"MIN_TICK": {
+					"details": "The minimum tick that may be passed to #getSqrtRatioAtTick computed from log base 1.0001 of 2**-128"
+				}
+			},
+			"title": "Math library for computing sqrt prices from ticks and vice versa",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Computes sqrt price for ticks of size 1.0001, i.e. sqrt(1.0001^tick) as fixed point Q64.96 numbers. Supports prices between 2**-128 and 2**128",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BNBPrice_flattened.sol": "TickMath"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BNBPrice_flattened.sol": {
+			"keccak256": "0x40a37b577920ad1de5c2666eb87aad4feee2500c5f13aa4e8db623834017afbb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b425810f55127668b01925c7befdad5ef65c5658345ed16fe1bf09ee8fa72fa5",
+				"dweb:/ipfs/QmTK15wEFYEo6io8mPJ2mpyWmVUj3uWowabfS5PDwh1Ug9"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,122 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"deployedBytecode": {
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "",
+			"opcodes": "",
+			"sourceMap": ""
+		},
+		"gasEstimates": null,
+		"methodIdentifiers": {
+			"collectProtocol(address,uint128,uint128)": "85b66729",
+			"setFeeProtocol(uint32,uint32)": "b0d0d211",
+			"setLmPool(address)": "cc7e7fa2"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "recipient",
+					"type": "address"
+				},
+				{
+					"internalType": "uint128",
+					"name": "amount0Requested",
+					"type": "uint128"
+				},
+				{
+					"internalType": "uint128",
+					"name": "amount1Requested",
+					"type": "uint128"
+				}
+			],
+			"name": "collectProtocol",
+			"outputs": [
+				{
+					"internalType": "uint128",
+					"name": "amount0",
+					"type": "uint128"
+				},
+				{
+					"internalType": "uint128",
+					"name": "amount1",
+					"type": "uint128"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint32",
+					"name": "feeProtocol0",
+					"type": "uint32"
+				},
+				{
+					"internalType": "uint32",
+					"name": "feeProtocol1",
+					"type": "uint32"
+				}
+			],
+			"name": "setFeeProtocol",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "lmPool",
+					"type": "address"
+				}
+			],
+			"name": "setLmPool",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}

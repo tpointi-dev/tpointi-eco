@@ -1,0 +1,141 @@
+{
+	"compiler": {
+		"version": "0.7.6+commit.7338295f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
+					},
+					{
+						"internalType": "uint128",
+						"name": "amount0Requested",
+						"type": "uint128"
+					},
+					{
+						"internalType": "uint128",
+						"name": "amount1Requested",
+						"type": "uint128"
+					}
+				],
+				"name": "collectProtocol",
+				"outputs": [
+					{
+						"internalType": "uint128",
+						"name": "amount0",
+						"type": "uint128"
+					},
+					{
+						"internalType": "uint128",
+						"name": "amount1",
+						"type": "uint128"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint32",
+						"name": "feeProtocol0",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint32",
+						"name": "feeProtocol1",
+						"type": "uint32"
+					}
+				],
+				"name": "setFeeProtocol",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "lmPool",
+						"type": "address"
+					}
+				],
+				"name": "setLmPool",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"collectProtocol(address,uint128,uint128)": {
+					"params": {
+						"amount0Requested": "The maximum amount of token0 to send, can be 0 to collect fees in only token1",
+						"amount1Requested": "The maximum amount of token1 to send, can be 0 to collect fees in only token0",
+						"recipient": "The address to which collected protocol fees should be sent"
+					},
+					"returns": {
+						"amount0": "The protocol fee collected in token0",
+						"amount1": "The protocol fee collected in token1"
+					}
+				},
+				"setFeeProtocol(uint32,uint32)": {
+					"params": {
+						"feeProtocol0": "new protocol fee for token0 of the pool",
+						"feeProtocol1": "new protocol fee for token1 of the pool"
+					}
+				}
+			},
+			"title": "Permissioned pool actions",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"collectProtocol(address,uint128,uint128)": {
+					"notice": "Collect the protocol fee accrued to the pool"
+				},
+				"setFeeProtocol(uint32,uint32)": {
+					"notice": "Set the denominator of the protocol's % share of the fees"
+				},
+				"setLmPool(address)": {
+					"notice": "Set the LM pool to enable liquidity mining"
+				}
+			},
+			"notice": "Contains pool methods that may only be called by the factory owner",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BNBPrice_flattened.sol": "IPancakeV3PoolOwnerActions"
+		},
+		"evmVersion": "berlin",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BNBPrice_flattened.sol": {
+			"keccak256": "0x40a37b577920ad1de5c2666eb87aad4feee2500c5f13aa4e8db623834017afbb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b425810f55127668b01925c7befdad5ef65c5658345ed16fe1bf09ee8fa72fa5",
+				"dweb:/ipfs/QmTK15wEFYEo6io8mPJ2mpyWmVUj3uWowabfS5PDwh1Ug9"
+			]
+		}
+	},
+	"version": 1
+}

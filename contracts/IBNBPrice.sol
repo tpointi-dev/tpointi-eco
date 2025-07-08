@@ -7,6 +7,7 @@ interface IBNBPrice {
     function getEqMode() external view returns( bool);
     function getEqModeString() external view returns( string memory);
     function viewAverage() external view returns (uint256);
+    function viewAverageStatic() external view returns (uint256);
     function bnbToUsd(uint8 index) external view  returns (uint);
     function usdToBnb(uint8 index) external view  returns (uint);
 }

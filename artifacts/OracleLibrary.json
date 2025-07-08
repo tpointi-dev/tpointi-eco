@@ -1,0 +1,66 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "60566023600b82828239805160001a607314601657fe5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122003b41e3166080606d65a44146d33ffe668fbe529f184106fe4a540b34c45649664736f6c63430007060033",
+			"opcodes": "PUSH1 0x56 PUSH1 0x23 PUSH1 0xB DUP3 DUP3 DUP3 CODECOPY DUP1 MLOAD PUSH1 0x0 BYTE PUSH1 0x73 EQ PUSH1 0x16 JUMPI INVALID JUMPDEST ADDRESS PUSH1 0x0 MSTORE PUSH1 0x73 DUP2 MSTORE8 DUP3 DUP2 RETURN INVALID PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 SUB 0xB4 0x1E BALANCE PUSH7 0x80606D65A4414 PUSH14 0x33FFE668FBE529F184106FE4A540 0xB3 0x4C GASLIMIT PUSH5 0x9664736F6C PUSH4 0x43000706 STOP CALLER ",
+			"sourceMap": "45650:8995:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;"
+		},
+		"deployedBytecode": {
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122003b41e3166080606d65a44146d33ffe668fbe529f184106fe4a540b34c45649664736f6c63430007060033",
+			"opcodes": "PUSH20 0x0 ADDRESS EQ PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 SUB 0xB4 0x1E BALANCE PUSH7 0x80606D65A4414 PUSH14 0x33FFE668FBE529F184106FE4A540 0xB3 0x4C GASLIMIT PUSH5 0x9664736F6C PUSH4 0x43000706 STOP CALLER ",
+			"sourceMap": "45650:8995:0:-:0;;;;;;;;"
+		},
+		"gasEstimates": {
+			"creation": {
+				"codeDepositCost": "17200",
+				"executionCost": "97",
+				"totalCost": "17297"
+			},
+			"internal": {
+				"consult(address,uint32)": "infinite",
+				"getBlockStartingTickAndLiquidity(address)": "infinite",
+				"getChainedPrice(address[] memory,int24[] memory)": "infinite",
+				"getOldestObservationSecondsAgo(address)": "infinite",
+				"getQuoteAtTick(int24,uint128,address,address)": "infinite",
+				"getWeightedArithmeticMeanTick(struct OracleLibrary.WeightedTickData memory[] memory)": "infinite"
+			}
+		},
+		"methodIdentifiers": {}
+	},
+	"abi": []
+}

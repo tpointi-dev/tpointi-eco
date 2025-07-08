@@ -54,7 +54,7 @@
 		"compilationTarget": {
 			"test.sol": "StructFallback"
 		},
-		"evmVersion": "prague",
+		"evmVersion": "berlin",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"

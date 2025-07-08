@@ -13,22 +13,20 @@ contract BNBPrice{
     address[] public poolsUSD;
     mapping( address => bool ) public eqMode; //   averageBnbToUsd ? averageUsdToBnb
     mapping(address => uint256) public lastPrice;
-    uint internal tax; // default 60e12
     event callAverage(address caller , uint tickPrice);
 
 
-    constructor(){
+    constructor(address _bnb, address _usd){
         owner = payable(msg.sender);
-        bnb = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
-        usd = 0x55d398326f99059fF775485246999027B3197955;
-        tax = 1;  // default 60e12
+        bnb = _bnb;
+        usd = _usd;
     }
 
     modifier onlyOwner{
         require(msg.sender == owner);
         _;
     }
-    // 0x0BFbCF9fa4f9C56B0F40a671Ad40E0805A091865 100 500 10000
+
     function addPoolUSD(address _factory, uint24 _fee) external onlyOwner {
         address pool = IPancakeV3Factory(_factory).getPool(
             usd,
@@ -122,7 +120,7 @@ contract BNBPrice{
 
 
     receive() external payable {
-        require(msg.value >= tax , "Value Low");
+        require(msg.value >= 60e12, "Value Low");
         uint256 price = _average(eqMode[msg.sender]);
         lastPrice[msg.sender] = price;
         lastPriceStatic = price;
@@ -136,9 +134,5 @@ contract BNBPrice{
     function viewAverageStatic() external view returns(uint){
         require(lastPriceStatic > 0, "No stored price");
         return lastPriceStatic;
-    }
-
-    function setTax(uint _tax) public onlyOwner {
-        tax = _tax;
     }
 }
