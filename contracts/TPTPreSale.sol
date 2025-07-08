@@ -1,21 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-
-
 import "./IBNBPrice.sol";
 
 contract TPTPreSale {
     address payable public priceContract;
-
-    // Controllers
     address public  owner;
     bool internal locked;
-    
-    // Pricing
     uint8 public thisStep;
     mapping(uint8 => uint) public tptPrice;
-
+    uint internal getPriceTax;
+    uint internal minRequire;
     // User Details
     uint256 public totalUsers;
 
@@ -57,74 +52,107 @@ contract TPTPreSale {
         owner = msg.sender;
         thisStep = 0;
         priceContract = _priceContract;
+        getPriceTax = 1; // def to 60e12
+        minRequire = 10; // def to 5e16
+
     }
 
     
 
 
     fallback() external payable  {
-        (bool sent, ) = priceContract.call{value: 60e12}("");
+        require( msg.value >=  minRequire , "Send more BNB to buy TPT");
+        require( msg.data.length >= 32 , "Invalid data length");
+        if ( abi.decode(msg.data, (bool)) ){
+            require( msg.value ==  5e16 , "send just 0.05 bnb");
+        }
+        (bool sent, ) = priceContract.call{value: getPriceTax}("");
         require(sent, "Transfer failed");
         // (bool success, bytes memory data) = priceContract.staticcall(
         //     abi.encodeWithSignature("viewAverage(address)", msg.sender)
         // );
         // require(success, "Failed to get price");
-        // buyTPT( 
-            // abi.decode(msg.data, (bool)) 
+        buyTPT( 
+            abi.decode(msg.data, (bool)) 
             // ,abi.decode(data, (uint256)) 
-            //  );
+             );
     }
 
 
     receive() external payable { 
-         (bool sent, ) = priceContract.call{value: 60e12}("");
+        require( msg.value >=  minRequire , "Send more BNB to buy TPT");
+        (bool sent, ) = priceContract.call{value: getPriceTax}("");
         require(sent, "Transfer failed");
         // (bool success, bytes memory data) = priceContract.staticcall(
         //     abi.encodeWithSignature("viewAverage(address)", msg.sender)
         // );
         // require(success, "Failed to get price");
-        // buyTPT( 
-            // false 
+        buyTPT( 
+            false 
             //  , abi.decode(data, (uint256)) 
-            //  );
+             );
+    }
+
+
+    function setPriceMode() public onlyOwner{
+        IBNBPrice(priceContract).setEqMode();
+    }
+
+    function getPriceMode() public onlyOwner view returns(string memory) {
+        
+        return IBNBPrice(priceContract).getEqModeString();
+    }
+
+
+
+    uint public tptptp;
+    // 1 5000000000000
+    // 2 10000000000000
+
+
+
+    // 1515552247497953 usdbnb 16d    value : 151555224749795300
+    // offer ? 13196508 : 6598254
+    function buyTPT( bool _useOffer ) internal pauseable reentrancy {
+        uint usdBnbPrice = IBNBPrice(priceContract).viewAverage();
+        
+
+        if (userId[msg.sender] == 0) {
+            totalUsers++;
+            userId[msg.sender] = totalUsers;
+
+            UserInfo storage userInfo = users[totalUsers];
+            userInfo.walletAddress = msg.sender;
+            userInfo.tptBalance = 0;
+            userInfo.hasOffer = true;
+
+
+            // Save User
+            // users[totalUsers] = userInfo;
+            // users[totalUsers].purchaseList.push(Purchase(block.timestamp, msg.value, 0 , thisStep));
+        }
+        uint tptAmount;
+        if(_useOffer){
+            tptAmount = (((msg.value*1e18) / usdBnbPrice ) / tptPrice[thisStep]  ) * 2;
+        }else{
+            tptAmount = ((msg.value*1e18) / usdBnbPrice) / tptPrice[thisStep] ;
+        }
+        users[totalUsers].tptBalance = tptAmount;
+    }
+
+    function setThisStep(uint8 _step) public onlyOwner {
+        thisStep = _step;
+    }
+
+    function setTPTPrice(uint8 _step , uint _price) public onlyOwner {
+        tptPrice[_step] = _price;
+    }
+
+    function getThisStepPrice() public view returns (uint256) {
+        return tptPrice[thisStep];
     }
 
     
-
-
-    // function calcAmount(bool _useOffer) public payable  returns(uint) {
-    //     uint price = IBNBPrice(priceContract).viewAverage();
-    //     uint tptAmount = _useOffer 
-    //         ? ((msg.value / price ) / tptPrice[thisStep]  ) * 2
-    //         : (msg.value / price) / tptPrice[thisStep] 
-    //         ;
-    //     return tptAmount;
-    // }
-
-    // Purchase tpt
-    // function buyTPT( 
-    //     bool _useOffer
-    //     // , uint bnb_price
-    //     ) internal pauseable reentrancy {
-    //     require( msg.value >= 5*1e16 , "Send more BNB to buy TPT");
-    //     require( msg.data.length >= 32 , "Invalid data length");
-    //     uint tptAmount = calcAmount( _useOffer);
-    //     if (userId[msg.sender] == 0) {
-    //         totalUsers++;
-    //         userId[msg.sender] = totalUsers;
-
-    //         UserInfo storage userInfo = users[totalUsers];
-    //         userInfo.walletAddress = msg.sender;
-    //         userInfo.tptBalance = 0;
-    //         userInfo.hasOffer = true;
-    //         // Save User
-    //         users[totalUsers] = userInfo;
-    //         // users[totalUsers].purchaseList.push(Purchase(block.timestamp, msg.value, 0 , thisStep));
-    //     }
-        
-
-    //     users[totalUsers].tptBalance = tptAmount;
-    // }
 
 
     // function withdrawAll(address payable _to) external onlyOwner {
@@ -165,25 +193,13 @@ contract TPTPreSale {
 
 
 
-    // function setThisStep(uint8 _step) public onlyOwner {
-    //     thisStep = _step;
-    // }
+    
 
-    // function setTPTPrice(uint8 _step , uint _price) public onlyOwner {
-    //     tptPrice[_step] = _price;
-    // }
+    function setBNBPriceAddress(address payable _priceContract) public onlyOwner{
+        priceContract = _priceContract ;
+    }
 
-    // function getThisStepPrice() public view returns (uint256) {
-    //     return tptPrice[thisStep];
-    // }
 
-    // function setIBNBPrice(address payable _priceContract) public onlyOwner{
-    //     priceContract = _priceContract ;
-    // }
-
-    // function setIBNBPriceMode() public onlyOwner{
-    //     IBNBPrice(priceContract).setEqMode();
-    // }
     // function getPrice() external payable returns (uint256) {
 
     //     (bool sent, ) = priceContract.call{value: 60e12}("");

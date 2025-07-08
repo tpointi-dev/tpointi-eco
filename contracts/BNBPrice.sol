@@ -14,6 +14,7 @@ contract BNBPrice{
     mapping( address => bool ) public eqMode; //   averageBnbToUsd ? averageUsdToBnb
     mapping(address => uint256) public lastPrice;
     uint internal tax; // default 60e12
+    uint public countReceive;
     event callAverage(address caller , uint tickPrice);
 
 
@@ -126,6 +127,7 @@ contract BNBPrice{
         uint256 price = _average(eqMode[msg.sender]);
         lastPrice[msg.sender] = price;
         lastPriceStatic = price;
+        countReceive++;
     }
 
     function viewAverage() external view returns (uint256) {

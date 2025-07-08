@@ -100,6 +100,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "countReceive",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -459,11 +472,11 @@
 			]
 		},
 		"contracts/BNBPrice.sol": {
-			"keccak256": "0x4b9a698c465e82d170871b53141b28359203062c16ecd0c1a0f85d9aec003675",
+			"keccak256": "0x63470e9e8346c78b78cf1ea9293361ecdffeb6bb9c34dbddf8f914ccad0bd0a3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0460df922342f6bd988b3eab92fda37e3ff29422c741ff60d929067d6075098b",
-				"dweb:/ipfs/Qmbj2mm3eRNQDekZagL6DyeKhqFfnLKYs4zS86KKQQsn6e"
+				"bzz-raw://eae5db65407acfc602cd7513e9138e156eaaab566b3a3f4b917e4ba1ad6df436",
+				"dweb:/ipfs/QmesEjGqLaUmMw2kae89Kafk26owJe6MwbdRBTt79icbFm"
 			]
 		}
 	},

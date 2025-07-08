@@ -22,6 +22,32 @@
 			},
 			{
 				"inputs": [],
+				"name": "getPriceMode",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getThisStepPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -44,6 +70,57 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_priceContract",
+						"type": "address"
+					}
+				],
+				"name": "setBNBPriceAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "setPriceMode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_step",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "setTPTPrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_step",
+						"type": "uint8"
+					}
+				],
+				"name": "setThisStep",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -81,6 +158,19 @@
 					}
 				],
 				"name": "tptPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "tptptp",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -159,7 +249,7 @@
 		"compilationTarget": {
 			"contracts/TPTPreSale.sol": "TPTPreSale"
 		},
-		"evmVersion": "berlin",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -180,11 +270,11 @@
 			]
 		},
 		"contracts/TPTPreSale.sol": {
-			"keccak256": "0x0860cd2f75de7d6fd982f5a9c97f640a5d060592090b3c75aa064c24e84b4c67",
+			"keccak256": "0x44d7ccdbcd8c0aaa7f038e73b38431dbd3f874d0309158272be412d3be71d78f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cf9520a8b0e0c553ac4eeb605679afcf9daebad652278aa4ce083ff1636dcfef",
-				"dweb:/ipfs/QmavBeDFVnLUidMLeFYFgoSvmhymLPSZXEnxk75rQteQDC"
+				"bzz-raw://a778457edb988d09d2422d965bef52b9193faa93b18f1159095df90d176466a4",
+				"dweb:/ipfs/QmYvBQzZN5LtWChBKbsAqG7MM5fxNkFvk5B61Dwe8yS7YZ"
 			]
 		}
 	},
