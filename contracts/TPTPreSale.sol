@@ -5,7 +5,7 @@ import "./IBNBPrice.sol";
 
 contract TPTPreSale {
     address payable internal priceContract;
-    address public owner;
+    address payable public owner;
     bool internal locked;
     uint8 public thisStep;
     mapping(uint8 => uint256) public tptStepPrice;
@@ -49,10 +49,10 @@ contract TPTPreSale {
     }
 
     constructor(address payable _priceContract) {
-        owner = msg.sender;
+        owner = payable (msg.sender);
         thisStep = 1;
         priceContract = _priceContract;
-        getPriceTax = 60e12; // def to 60e12
+        getPriceTax = 65e12;
         minRequire = 1e16; // def to 5e16
         totalUsers = 0;
     }
@@ -86,7 +86,15 @@ contract TPTPreSale {
 
     // 1 5000000000000
     // 2 10000000000000
-    // 1515552247497953 usdbnb 16d    value : 151169269202239400
+    // 3 10600000000000
+    // 4 11236000000000
+    // 5 14045000000000
+    // 6 18960000000000
+    // 7 28441000000000
+    // 8 45506000000000
+    // 9 77360000000000
+    //10 100000000000000
+    // 1515552247497953 usdbnb 16d    value : 151169269202239400  => 100$
     // offer ? 13196508 : 6598254
     function buyTPT(bool _useOffer) internal pauseable reentrancy {
         if (userId[msg.sender] == 0) {
@@ -176,7 +184,13 @@ contract TPTPreSale {
         priceContract = _priceContract;
     }
 
-    function chaneOwner(address _owner) public onlyOwner{
+    function chaneOwner(address payable  _owner) public onlyOwner{
         owner = _owner ;
+    }
+
+
+    function setMinRequire(uint _min) public onlyOwner{
+        require(_min >= getPriceTax , "min should be more than tax");
+        minRequire = _min;
     }
 }

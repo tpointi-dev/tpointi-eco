@@ -345,7 +345,7 @@
 		"compilationTarget": {
 			"contracts/BNBPrice.sol": "BNBPrice"
 		},
-		"evmVersion": "berlin",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -446,11 +446,11 @@
 			]
 		},
 		"contracts/BNBPrice.sol": {
-			"keccak256": "0xc2c1b535e3992d0b788023fcdee5da6dea2b21bdfe7aafef71eacb02d0c52a15",
+			"keccak256": "0x4d63cbab2d2f1e9097aee05175d37a595a53f8099d55c090c8f2736b93caffe4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4c5ad0c6320fc3e27171b3281adf9994fa2155deb21004eb95d96d906bc9fc18",
-				"dweb:/ipfs/QmZprVKEt8Yo3Dz7c8dbqr7mVVLmC29XivzeVhPRcbJSb3"
+				"bzz-raw://6aeeb5de0becf3a30f39175bc347f0f0abb7f7ebc7aa71b7fa90dbc0af61fdc8",
+				"dweb:/ipfs/QmSStzPvGyRR1xUM68QY8799kmA5TjNThHMZsxTYZ3ieNC"
 			]
 		}
 	},

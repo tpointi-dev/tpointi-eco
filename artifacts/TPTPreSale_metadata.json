@@ -23,7 +23,7 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
+						"internalType": "address payable",
 						"name": "_owner",
 						"type": "address"
 					}
@@ -230,7 +230,7 @@
 				"name": "owner",
 				"outputs": [
 					{
-						"internalType": "address",
+						"internalType": "address payable",
 						"name": "",
 						"type": "address"
 					}
@@ -247,6 +247,19 @@
 					}
 				],
 				"name": "setBNBPriceAddress",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_min",
+						"type": "uint256"
+					}
+				],
+				"name": "setMinRequire",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -388,11 +401,11 @@
 			]
 		},
 		"contracts/TPTPreSale.sol": {
-			"keccak256": "0x64c73cf0ca0c79a5e1860c846e918f6d168364ef460d9d42e464e095487bee40",
+			"keccak256": "0xda6914d3b774b1e2515c753376a5daac5a0389016bee405b84a2fd24d61955d4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://aa65702bfb3a0ad2ed831d1f5354d14b7de1fdde8b9e4694ee2a7bd7a254da65",
-				"dweb:/ipfs/QmcA3Sn44Z3LChXZrgb2vNFP8LPiPT9pkpjiu6CgGwwY2U"
+				"bzz-raw://8300d0b401d358adef8369cd8ec1e79f382fb7428f13f7971778c7692a293b5b",
+				"dweb:/ipfs/QmQfpvidoTyYiJprAMrPBakbzLEMQWBKrgLFbudohp49Sq"
 			]
 		}
 	},
