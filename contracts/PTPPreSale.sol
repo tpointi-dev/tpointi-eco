@@ -62,13 +62,13 @@ contract TPTPreSale {
         buyTPT( abi.decode(msg.data, (bool)) );
     }
 
-    
+
     receive() external payable { 
         buyTPT( false );
     }
 
     function getPrice() external payable returns (uint256) {
-        require(msg.value >= 1e14, "Insufficient BNB");
+        // require(msg.value >= 1e14, "Insufficient BNB");
 
         // پرداخت BNB به کانترکت A
         (bool sent, ) = priceContract.call{value: msg.value}("");
@@ -84,49 +84,42 @@ contract TPTPreSale {
     }
 
     // 100000000000000
-    // function getUsdBnbPrice() public payable returns ( uint usdBnb, bool mode){
-    //     (usdBnb, mode) = iBNBPrice.getAverage{value : 1e14}(); // 1e14 => getPriceTax
+    function getUsdBnbPrice() public payable returns ( uint usdBnb, bool mode){
+        (usdBnb, mode) = iBNBPrice.getAverage{value : 1e14}(); // 1e14 => getPriceTax
         
-    // }
+    }
 
 
-    // function calcAmount(bool _useOffer) public payable returns(uint){
-    //     (uint usdBnb ,) = getPrice();
-    //     uint tptAmount = _useOffer 
-    //         ? ((msg.value / usdBnb ) / tptPrice[thisStep]  ) * 2
-    //         : (msg.value / usdBnb) / tptPrice[thisStep] 
-    //         ;
-    //     return tptAmount;
-    // }
-
-
-
+    function calcAmount(bool _useOffer) public payable returns(uint) {
+        uint _price = getPrice();
+        uint tptAmount = _useOffer 
+            ? ((msg.value / usdBnb ) / tptPrice[thisStep]  ) * 2
+            : (msg.value / usdBnb) / tptPrice[thisStep] 
+            ;
+        return tptAmount;
+    }
 
     // Purchase tpt
-    // function buyTPT( bool _useOffer ) internal pauseable reentrancy {
-    //     require( msg.value >= 5*1e16 , "Send more BNB to buy TPT");
-    //     require( msg.data.length >= 32 , "Invalid data length");
+    function buyTPT( bool _useOffer ) internal pauseable reentrancy {
+        require( msg.value >= 5*1e16 , "Send more BNB to buy TPT");
+        require( msg.data.length >= 32 , "Invalid data length");
+        uint tptAmount = calcAmount( _useOffer );
+        if (userId[msg.sender] == 0) {
+            totalUsers++;
+            userId[msg.sender] = totalUsers;
 
-    //     uint tptAmount = calcAmount( _useOffer );
-
+            UserInfo storage userInfo = users[totalUsers];
+            userInfo.walletAddress = msg.sender;
+            userInfo.tptBalance = 0;
+            userInfo.hasOffer = true;
+            // Save User
+            users[totalUsers] = userInfo;
+            // users[totalUsers].purchaseList.push(Purchase(block.timestamp, msg.value, 0 , thisStep));
+        }
         
 
-    //     if (userId[msg.sender] == 0) {
-    //         totalUsers++;
-    //         userId[msg.sender] = totalUsers;
-
-    //         UserInfo storage userInfo = users[totalUsers];
-    //         userInfo.walletAddress = msg.sender;
-    //         userInfo.tptBalance = 0;
-    //         userInfo.hasOffer = true;
-    //         // Save User
-    //         users[totalUsers] = userInfo;
-    //         // users[totalUsers].purchaseList.push(Purchase(block.timestamp, msg.value, 0 , thisStep));
-    //     }
-        
-
-    //     users[totalUsers].tptBalance = tptAmount;
-    // }
+        users[totalUsers].tptBalance = tptAmount;
+    }
 
 
     // function withdrawAll(address payable _to) external onlyOwner {
