@@ -26,6 +26,11 @@
 						"internalType": "bool",
 						"name": "_useOffer",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
 					}
 				],
 				"name": "calcAmount",
@@ -40,8 +45,48 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "getPrice",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getPurchase",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "bnbAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tptAmount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "getPurchaseCount",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -49,20 +94,95 @@
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "payable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "getUsdBnbPrice",
+				"name": "getThisStepPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "_lastPrice",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "payable",
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getUserAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "getUserTPTBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "grantPointsById",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -89,6 +209,57 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_priceContract",
+						"type": "address"
+					}
+				],
+				"name": "setIBNBPrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "setIBNBPriceMode",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_step",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_price",
+						"type": "uint256"
+					}
+				],
+				"name": "setTPTPrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_step",
+						"type": "uint8"
+					}
+				],
+				"name": "setThisStep",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -185,6 +356,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "withdrawAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -225,11 +409,11 @@
 			]
 		},
 		"contracts/TPTPreSale.sol": {
-			"keccak256": "0x9ef486b6123f3afcd9897136e4fcff4bf3e041522b0605a1a23a672211fe3452",
+			"keccak256": "0xd6f8fae7c2902633634ef8f78dc1f84e9bac7c9c528cdb13bace67159ae14451",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://54802f3641fd63cb91490817e138cf20cb99ce353350248f473c60ed236ba541",
-				"dweb:/ipfs/Qmc6iqJcAj7gNZf7rost6mmDm3dJ1fqags6HGHgQ5GaEko"
+				"bzz-raw://d52b7d401dafc9cbf9b0193da8bfe67a421a9092ee7416505846c96c8c442293",
+				"dweb:/ipfs/QmP1L94A7VJWXE3xbJtQsqcA4hPB3DdUKDLsT27Zp8Uhz1"
 			]
 		}
 	},
