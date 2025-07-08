@@ -68,9 +68,19 @@ contract TPTPreSale {
     }
 
     // 100000000000000
-    function getBNBPrice() public payable returns ( uint bnbPrice, string memory mode){
-        (bnbPrice, mode) = iBNBPrice.getAverage{value : 1e14}(); // 1e14 => getPriceTax
+    function getUsdBnbPrice() public payable returns ( uint usdBnb, bool mode){
+        (usdBnb, mode) = iBNBPrice.getAverage{value : 1e14}(); // 1e14 => getPriceTax
         
+    }
+
+
+    function calcAmount(bool _useOffer) public payable returns(uint){
+        (uint usdBnb ,) = getUsdBnbPrice();
+        uint tptAmount = _useOffer 
+            ? ((msg.value / usdBnb ) / tptPrice[thisStep]  ) * 2
+            : (msg.value / usdBnb) / tptPrice[thisStep] 
+            ;
+        return tptAmount;
     }
 
 
@@ -81,10 +91,9 @@ contract TPTPreSale {
         require( msg.value >= 5*1e16 , "Send more BNB to buy TPT");
         require( msg.data.length >= 32 , "Invalid data length");
 
-        uint tptAmount = _useOffer 
-            ? msg.value * 1e18 / tptPrice[thisStep] 
-            : (msg.value * 1e18 / tptPrice[thisStep]) * 2 
-            ;
+        uint tptAmount = calcAmount( _useOffer );
+
+        
 
         if (userId[msg.sender] == 0) {
             totalUsers++;
@@ -156,6 +165,10 @@ contract TPTPreSale {
 
     function setIBNBPrice(address _bnbprice) public onlyOwner{
         iBNBPrice = IBNBPrice(_bnbprice);
+    }
+
+    function setIBNBPriceMode() public onlyOwner{
+        iBNBPrice.setEqMode();
     }
 
 

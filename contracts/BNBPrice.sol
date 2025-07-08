@@ -5,17 +5,11 @@ import "@pancakeswap/v3-core/contracts/interfaces/IPancakeV3Factory.sol";
 import "@pancakeswap/v3-core/contracts/interfaces/IPancakeV3Pool.sol";
 import "@pancakeswap/v3-periphery/contracts/libraries/OracleLibrary.sol";
 
-// Main network bnb : 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c ( wraped )
-// Main network usd : 0x55d398326f99059fF775485246999027B3197955 ( Binance-Peg BSC-USD )
-// Main network factory : 0x0BFbCF9fa4f9C56B0F40a671Ad40E0805A091865
-// 100000000000000
-
-
 contract BNBPrice{
     address public bnb;
     address public usd;
     address payable public owner;
-    mapping( address => bool ) private eqMode; //   averageBnbToUsd ? averageUsdToBnb
+    mapping( address => bool ) public eqMode; //   averageBnbToUsd ? averageUsdToBnb
     address[] public poolsUSD;
     event callAverage(address caller , uint tickPrice);
 
@@ -95,18 +89,22 @@ contract BNBPrice{
 
 
 
-    function getAverage() external payable returns (uint256 , string memory) {
-        require(msg.value == 100000000000000, "Send more BNB"); //=> 0.0001 bnb 
+    function getAverage() external payable returns (uint256 , bool) {
+        require(msg.value >= 438e11, "BNB Need");
         uint result = _average(eqMode[msg.sender]);
         emit callAverage(msg.sender, msg.value);
 
-        return (result , eqMode[msg.sender] ? "USDTBNB" : "BNBUSDT");
+        return (result , eqMode[msg.sender]);
     }
-
 
     
     function setEqMode() public {
         eqMode[msg.sender] = !eqMode[msg.sender];
+    }
+
+
+    function getEqMode() public view returns (bool){
+        return eqMode[msg.sender];
     }
 
     function poolsLenght() public view returns(uint){
@@ -114,23 +112,21 @@ contract BNBPrice{
     return count;
     }
 
-    function getEqMode() public view returns( string memory) {
-        string memory em = eqMode[msg.sender] ?  "USDT to BNB" : "BNB to USDT";
+    function getEqModeString() public view returns( string memory) {
+        string memory em = eqMode[msg.sender] ?  "USDTBNB" : "BNBUSDT";
         return em;
     }
 
     function changeOwner(address payable _newOwner) public onlyOwner {
         owner = _newOwner ; 
     }
-
     function getContractBalance() external view returns (uint256) {
         return address(this).balance;
     }
-
-    function toOwner() public onlyOwner {
-        require(address(this).balance >= 1000000000000000 , "LowBalance");
-        (bool success, ) = owner.call{value: address(this).balance}("");
+    function claimTax(address payable _to , uint _amount) external onlyOwner {
+        require(address(this).balance >= _amount, "Not enough balance");
+        (bool success, ) = _to.call{value: _amount}("");
         require(success, "Transfer failed");
     }
+    receive() external payable { }
 }
-

@@ -34,9 +34,9 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "string",
+						"internalType": "bool",
 						"name": "",
-						"type": "string"
+						"type": "bool"
 					}
 				],
 				"stateMutability": "payable",
@@ -45,6 +45,19 @@
 			{
 				"inputs": [],
 				"name": "getEqMode",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getEqModeString",
 				"outputs": [
 					{
 						"internalType": "string",
@@ -110,11 +123,11 @@
 	},
 	"sources": {
 		"contracts/IBNBPrice.sol": {
-			"keccak256": "0xe9f8110757daeaa3db0e76a2a48f10cfeea679e4927af087e5c24d30f44fa4f7",
+			"keccak256": "0xb778c4ce737515d889ac431e8192e03fb328a7e53518f9fcf28c3db32155050b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://72add4bd90cddb9e84728064221091197e47e1e987004b3cba765166893b1de5",
-				"dweb:/ipfs/QmVuY8D41r97TyXjQPNnTuZzVAUyJxnBstmu4r1N1wsrsi"
+				"bzz-raw://cad29893818d7052e7451c5e766073cefce91191e51197dcda221588c4444f3a",
+				"dweb:/ipfs/QmfZAskFaiG4cak9QrVgrJTckLLffTdA38X8ToQqW5uZsw"
 			]
 		}
 	},

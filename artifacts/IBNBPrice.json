@@ -52,6 +52,7 @@
 			"bnbToUsd(uint8)": "6c7474da",
 			"getAverage()": "21055acb",
 			"getEqMode()": "026f0dbe",
+			"getEqModeString()": "a1c6a405",
 			"setEqMode()": "65a6cc2e",
 			"usdToBnb(uint8)": "c0404fa7"
 		}
@@ -86,9 +87,9 @@
 					"type": "uint256"
 				},
 				{
-					"internalType": "string",
+					"internalType": "bool",
 					"name": "",
-					"type": "string"
+					"type": "bool"
 				}
 			],
 			"stateMutability": "payable",
@@ -97,6 +98,19 @@
 		{
 			"inputs": [],
 			"name": "getEqMode",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getEqModeString",
 			"outputs": [
 				{
 					"internalType": "string",
