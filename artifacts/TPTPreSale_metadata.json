@@ -8,8 +8,8 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "_iBnbPrice",
+						"internalType": "address payable",
+						"name": "_priceContract",
 						"type": "address"
 					}
 				],
@@ -17,185 +17,16 @@
 				"type": "constructor"
 			},
 			{
-				"stateMutability": "payable",
-				"type": "fallback"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "bool",
-						"name": "_useOffer",
-						"type": "bool"
-					}
-				],
-				"name": "calcAmount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "index",
-						"type": "uint256"
-					}
-				],
-				"name": "getPurchase",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "timestamp",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "bnbAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tptAmount",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					}
-				],
-				"name": "getPurchaseCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
-				"name": "getThisStepPrice",
+				"name": "getPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getUsdBnbPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "usdBnb",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "mode",
-						"type": "bool"
 					}
 				],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "id",
-						"type": "uint256"
-					}
-				],
-				"name": "getUserAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					}
-				],
-				"name": "getUserId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					}
-				],
-				"name": "getUserTPTBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"name": "grantPointsById",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -212,54 +43,16 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
+				"inputs": [],
+				"name": "priceContract",
+				"outputs": [
 					{
-						"internalType": "address",
-						"name": "_bnbprice",
+						"internalType": "address payable",
+						"name": "",
 						"type": "address"
 					}
 				],
-				"name": "setIBNBPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "setIBNBPriceMode",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint8",
-						"name": "_step",
-						"type": "uint8"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_price",
-						"type": "uint256"
-					}
-				],
-				"name": "setTPTPrice",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint8",
-						"name": "_step",
-						"type": "uint8"
-					}
-				],
-				"name": "setThisStep",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -354,23 +147,6 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address payable",
-						"name": "_to",
-						"type": "address"
-					}
-				],
-				"name": "withdrawAll",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"stateMutability": "payable",
-				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -401,19 +177,19 @@
 	},
 	"sources": {
 		"contracts/IBNBPrice.sol": {
-			"keccak256": "0xb778c4ce737515d889ac431e8192e03fb328a7e53518f9fcf28c3db32155050b",
+			"keccak256": "0x9cf2b11ce5a04a43025d8c2adebe075cc4f73d8295e0dc23278856ed265ea547",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://cad29893818d7052e7451c5e766073cefce91191e51197dcda221588c4444f3a",
-				"dweb:/ipfs/QmfZAskFaiG4cak9QrVgrJTckLLffTdA38X8ToQqW5uZsw"
+				"bzz-raw://4dd6927a5da7a974dfe0740b8431943c69153f8733948ebdcb1ddcf79af05dda",
+				"dweb:/ipfs/QmNYQReHsmFoAKdSNpoSK7kCmB1SE4DYesM2kXDCydjH2d"
 			]
 		},
 		"contracts/PTPPreSale.sol": {
-			"keccak256": "0x3d07e45bde365be63e3ec457ac9b0ec79d4ecb7696687eda9d9977f33406ecb2",
+			"keccak256": "0x9aea4317b5f934ff2d975b35795e9369198fbd08452bef2b1cf8856cf1cf417c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7113cf6e88891c0cc301db4803507cd4e46ada82543ef422331af53fbf535480",
-				"dweb:/ipfs/QmWMfhjTB4JHZJWojDdAuswZEnpeAvMh7rEUcL64qTq7CT"
+				"bzz-raw://5c46bda3b71af740ece3b4f72fc6e91af4cecb3acc98533947043ba829798a9e",
+				"dweb:/ipfs/QmdotKyfQch1SBXzJX77pMAB5TZxA9G6FW9DVLvjMD57GG"
 			]
 		}
 	},

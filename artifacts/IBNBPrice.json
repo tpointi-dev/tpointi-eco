@@ -50,11 +50,11 @@
 		"gasEstimates": null,
 		"methodIdentifiers": {
 			"bnbToUsd(uint8)": "6c7474da",
-			"getAverage()": "21055acb",
 			"getEqMode()": "026f0dbe",
 			"getEqModeString()": "a1c6a405",
 			"setEqMode()": "65a6cc2e",
-			"usdToBnb(uint8)": "c0404fa7"
+			"usdToBnb(uint8)": "c0404fa7",
+			"viewAverage()": "e03d1632"
 		}
 	},
 	"abi": [
@@ -75,24 +75,6 @@
 				}
 			],
 			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "getAverage",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				},
-				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
-				}
-			],
-			"stateMutability": "payable",
 			"type": "function"
 		},
 		{
@@ -137,6 +119,19 @@
 				}
 			],
 			"name": "usdToBnb",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "viewAverage",
 			"outputs": [
 				{
 					"internalType": "uint256",

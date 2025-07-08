@@ -104,18 +104,7 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address payable",
-						"name": "_to",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
+				"inputs": [],
 				"name": "claimTax",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -142,37 +131,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "getAverage",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getContractBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "getEqMode",
 				"outputs": [
 					{
@@ -192,6 +150,25 @@
 						"internalType": "string",
 						"name": "",
 						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "lastPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -321,6 +298,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "viewAverage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -340,7 +330,7 @@
 		"compilationTarget": {
 			"contracts/BNBPrice.sol": "BNBPrice"
 		},
-		"evmVersion": "istanbul",
+		"evmVersion": "berlin",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -441,11 +431,11 @@
 			]
 		},
 		"contracts/BNBPrice.sol": {
-			"keccak256": "0xaa78b7d359fb28ae8d08c463110951d1128b8e1d7f5509d2d590253e8e6279e1",
+			"keccak256": "0x086ba4f4889567b7c02c0dfe2f28e0476a0c27546bb0a38a7fde4d8c1f7e2aa0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b6ca7570d67bf27ef248f2ec1c9825853c9e68e661a14953324f05260ffe069b",
-				"dweb:/ipfs/QmfVjzQoVhkjfjZdN8SHAREZvEwRn8fXK6M8NwCYpu6FTz"
+				"bzz-raw://1ac918f1ed1378416038a9ad7e7ab34f371e138d31781b4622203c161dc1f6a5",
+				"dweb:/ipfs/QmdpM7mytLEHsga8eXCwoAkP61nxK7ZwQUwsPo2y5sEBmt"
 			]
 		}
 	},

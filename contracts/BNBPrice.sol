@@ -9,9 +9,11 @@ contract BNBPrice{
     address public bnb;
     address public usd;
     address payable public owner;
-    mapping( address => bool ) public eqMode; //   averageBnbToUsd ? averageUsdToBnb
     address[] public poolsUSD;
+    mapping( address => bool ) public eqMode; //   averageBnbToUsd ? averageUsdToBnb
+    mapping(address => uint256) public lastPrice;
     event callAverage(address caller , uint tickPrice);
+
 
     constructor(address _bnb, address _usd){
         owner = payable(msg.sender);
@@ -43,8 +45,7 @@ contract BNBPrice{
         (,int24 tick,,,,,) = IPancakeV3Pool(poolsUSD[index]).slot0();
         price = OracleLibrary.getQuoteAtTick(
             tick, 1e18, usd, bnb
-            );
-        
+            ) ;
     }
 
 
@@ -53,30 +54,30 @@ contract BNBPrice{
         price = OracleLibrary.getQuoteAtTick(
             tick, 1e18, bnb, usd
             );
-        
     }
     
     
-    function _average( bool _mode ) internal view returns (uint average) {
-        uint prices;
-        uint8 truePoolsLenght;
-        for (uint8 i = 0; i < poolsUSD.length ; i ++ )
-        {
-            (,int24 tick,,,,,) = IPancakeV3Pool(poolsUSD[i]).slot0();
-            uint price = OracleLibrary.getQuoteAtTick(
-                tick, 
-                1e18, 
-                _mode ? usd : bnb , 
+    function _average(bool _mode) internal view returns (uint256 average) {
+        uint256 prices;
+        uint8 validCount;
+
+        for (uint8 i = 0; i < poolsUSD.length; i++) {
+            (, int24 tick,,,,,) = IPancakeV3Pool(poolsUSD[i]).slot0();
+            uint256 price = OracleLibrary.getQuoteAtTick(
+                tick,
+                1e18,
+                _mode ? usd : bnb,
                 _mode ? bnb : usd
             );
-            if (price != 0) {
+
+            if (price > 0) {
                 prices += price;
-                truePoolsLenght++;
+                validCount++;
             }
         }
-        require(prices != 0 , "No price founded");
-        average = prices/truePoolsLenght;
-        return average;
+
+        require(validCount > 0, "No price found");
+        average = prices / validCount;
     }
 
     function setBnbAddress(address _bnb) public onlyOwner{
@@ -87,17 +88,6 @@ contract BNBPrice{
         usd = _usd;
     }
 
-
-
-    function getAverage() external payable returns (uint256 , bool) {
-        require(msg.value >= 438e11, "BNB Need");
-        uint result = _average(eqMode[msg.sender]);
-        emit callAverage(msg.sender, msg.value);
-
-        return (result , eqMode[msg.sender]);
-    }
-
-    
     function setEqMode() public {
         eqMode[msg.sender] = !eqMode[msg.sender];
     }
@@ -120,13 +110,22 @@ contract BNBPrice{
     function changeOwner(address payable _newOwner) public onlyOwner {
         owner = _newOwner ; 
     }
-    function getContractBalance() external view returns (uint256) {
-        return address(this).balance;
+
+
+    function claimTax() external onlyOwner {
+        require(address(this).balance >= 0, "Not enough balance");
+        owner.transfer(address(this).balance);
     }
-    function claimTax(address payable _to , uint _amount) external onlyOwner {
-        require(address(this).balance >= _amount, "Not enough balance");
-        (bool success, ) = _to.call{value: _amount}("");
-        require(success, "Transfer failed");
+
+
+    receive() external payable {
+        require(msg.value >= 60e12, "Value Low");
+        uint256 price = _average(eqMode[msg.sender]);
+        lastPrice[msg.sender] = price;
     }
-    receive() external payable { }
+
+    function viewAverage() external view returns (uint256) {
+        require(lastPrice[msg.sender] > 0, "No stored price");
+        return lastPrice[msg.sender];
+    }
 }
