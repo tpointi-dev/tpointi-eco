@@ -17,12 +17,48 @@
 				"type": "constructor"
 			},
 			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_useOffer",
+						"type": "bool"
+					}
+				],
+				"name": "calcAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getUsdBnbPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "_lastPrice",
 						"type": "uint256"
 					}
 				],
@@ -147,6 +183,10 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
 			}
 		],
 		"devdoc": {
@@ -162,7 +202,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/PTPPreSale.sol": "TPTPreSale"
+			"contracts/TPTPreSale.sol": "TPTPreSale"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -184,12 +224,12 @@
 				"dweb:/ipfs/QmNYQReHsmFoAKdSNpoSK7kCmB1SE4DYesM2kXDCydjH2d"
 			]
 		},
-		"contracts/PTPPreSale.sol": {
-			"keccak256": "0x9aea4317b5f934ff2d975b35795e9369198fbd08452bef2b1cf8856cf1cf417c",
+		"contracts/TPTPreSale.sol": {
+			"keccak256": "0x9ef486b6123f3afcd9897136e4fcff4bf3e041522b0605a1a23a672211fe3452",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://5c46bda3b71af740ece3b4f72fc6e91af4cecb3acc98533947043ba829798a9e",
-				"dweb:/ipfs/QmdotKyfQch1SBXzJX77pMAB5TZxA9G6FW9DVLvjMD57GG"
+				"bzz-raw://54802f3641fd63cb91490817e138cf20cb99ce353350248f473c60ed236ba541",
+				"dweb:/ipfs/Qmc6iqJcAj7gNZf7rost6mmDm3dJ1fqags6HGHgQ5GaEko"
 			]
 		}
 	},

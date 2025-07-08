@@ -7,7 +7,7 @@ contract TPTPreSale {
     address payable public priceContract;
 
     // Controllers
-    address public owner;
+    address public  owner;
     bool internal locked;
     
     // Pricing
@@ -59,6 +59,7 @@ contract TPTPreSale {
 
 
     fallback() external payable  {
+        
         buyTPT( abi.decode(msg.data, (bool)) );
     }
 
@@ -70,11 +71,9 @@ contract TPTPreSale {
     function getPrice() external payable returns (uint256) {
         // require(msg.value >= 1e14, "Insufficient BNB");
 
-        // پرداخت BNB به کانترکت A
         (bool sent, ) = priceContract.call{value: msg.value}("");
         require(sent, "Transfer to price contract failed");
 
-        // خواندن قیمت از کانترکت A
         (bool success, bytes memory data) = priceContract.staticcall(
             abi.encodeWithSignature("viewAverage(address)", msg.sender)
         );
@@ -83,18 +82,16 @@ contract TPTPreSale {
         return abi.decode(data, (uint256));
     }
 
-    // 100000000000000
-    function getUsdBnbPrice() public payable returns ( uint usdBnb, bool mode){
-        (usdBnb, mode) = iBNBPrice.getAverage{value : 1e14}(); // 1e14 => getPriceTax
-        
+    function getUsdBnbPrice() public payable returns ( uint _lastPrice){
+        _lastPrice = IBNBPrice(priceContract).viewAverage(); // 1e14 => getPriceTax
     }
 
 
     function calcAmount(bool _useOffer) public payable returns(uint) {
-        uint _price = getPrice();
+        uint _price = getUsdBnbPrice();
         uint tptAmount = _useOffer 
-            ? ((msg.value / usdBnb ) / tptPrice[thisStep]  ) * 2
-            : (msg.value / usdBnb) / tptPrice[thisStep] 
+            ? ((msg.value / _price ) / tptPrice[thisStep]  ) * 2
+            : (msg.value / _price) / tptPrice[thisStep] 
             ;
         return tptAmount;
     }

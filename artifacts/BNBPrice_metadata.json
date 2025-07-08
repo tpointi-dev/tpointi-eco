@@ -330,7 +330,7 @@
 		"compilationTarget": {
 			"contracts/BNBPrice.sol": "BNBPrice"
 		},
-		"evmVersion": "berlin",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
