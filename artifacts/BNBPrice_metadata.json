@@ -178,19 +178,6 @@
 			},
 			{
 				"inputs": [],
-				"name": "lastPriceStatic",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
 				"name": "owner",
 				"outputs": [
 					{
@@ -339,19 +326,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "viewAverageStatic",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"stateMutability": "payable",
 				"type": "receive"
 			}
@@ -371,7 +345,7 @@
 		"compilationTarget": {
 			"contracts/BNBPrice.sol": "BNBPrice"
 		},
-		"evmVersion": "berlin",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -472,11 +446,11 @@
 			]
 		},
 		"contracts/BNBPrice.sol": {
-			"keccak256": "0x63470e9e8346c78b78cf1ea9293361ecdffeb6bb9c34dbddf8f914ccad0bd0a3",
+			"keccak256": "0x078b38a4a506f9e1f06447b4a37116f6ff36b983caecd85b211cea1254558325",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eae5db65407acfc602cd7513e9138e156eaaab566b3a3f4b917e4ba1ad6df436",
-				"dweb:/ipfs/QmesEjGqLaUmMw2kae89Kafk26owJe6MwbdRBTt79icbFm"
+				"bzz-raw://7261ea9466f1f0995329285d13696e397064474baf6a7db4cedd4001387a4543",
+				"dweb:/ipfs/QmQLDkpd5QHj64fcjyKa9qwjxPvJ4cpqpVk5s1HNwBNi2M"
 			]
 		}
 	},

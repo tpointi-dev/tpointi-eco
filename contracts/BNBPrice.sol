@@ -6,7 +6,6 @@ import "@pancakeswap/v3-core/contracts/interfaces/IPancakeV3Pool.sol";
 import "@pancakeswap/v3-periphery/contracts/libraries/OracleLibrary.sol";
 
 contract BNBPrice{
-    uint public lastPriceStatic;
     address public bnb;
     address public usd;
     address payable public owner;
@@ -126,7 +125,6 @@ contract BNBPrice{
         require(msg.value >= tax , "Value Low");
         uint256 price = _average(eqMode[msg.sender]);
         lastPrice[msg.sender] = price;
-        lastPriceStatic = price;
         countReceive++;
     }
 
@@ -134,12 +132,6 @@ contract BNBPrice{
         require(lastPrice[msg.sender] > 0, "No stored price");
         return lastPrice[msg.sender];
     }
-
-    function viewAverageStatic() external view returns(uint){
-        require(lastPriceStatic > 0, "No stored price");
-        return lastPriceStatic;
-    }
-
     function setTax(uint _tax) public onlyOwner {
         tax = _tax;
     }

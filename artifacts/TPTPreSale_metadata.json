@@ -34,6 +34,71 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getPurchase",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "bnbAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tptAmount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint8",
+								"name": "step",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct TPTPreSale.Purchase",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "getPurchaseCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getThisStepPrice",
 				"outputs": [
@@ -47,24 +112,130 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "owner",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getUser",
 				"outputs": [
 					{
-						"internalType": "address",
+						"components": [
+							{
+								"internalType": "address",
+								"name": "walletAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "tptBalance",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bool",
+								"name": "hasOffer",
+								"type": "bool"
+							},
+							{
+								"components": [
+									{
+										"internalType": "uint256",
+										"name": "timestamp",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "bnbAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "tptAmount",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint8",
+										"name": "step",
+										"type": "uint8"
+									}
+								],
+								"internalType": "struct TPTPreSale.Purchase[]",
+								"name": "purchaseList",
+								"type": "tuple[]"
+							}
+						],
+						"internalType": "struct TPTPreSale.UserInfo",
 						"name": "",
-						"type": "address"
+						"type": "tuple"
 					}
 				],
 				"stateMutability": "view",
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "priceContract",
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getUserId",
 				"outputs": [
 					{
-						"internalType": "address payable",
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					}
+				],
+				"name": "getUserTPTBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "grantPointsById",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
@@ -157,20 +328,7 @@
 						"type": "uint8"
 					}
 				],
-				"name": "tptPrice",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "tptptp",
+				"name": "tptStepPrice",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -184,49 +342,14 @@
 			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "",
+						"internalType": "address payable",
+						"name": "_to",
 						"type": "address"
 					}
 				],
-				"name": "userId",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "users",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "walletAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "tptBalance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "hasOffer",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
+				"name": "withdrawAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -270,11 +393,11 @@
 			]
 		},
 		"contracts/TPTPreSale.sol": {
-			"keccak256": "0x44d7ccdbcd8c0aaa7f038e73b38431dbd3f874d0309158272be412d3be71d78f",
+			"keccak256": "0x5bb426b8365d8d5fcd60f9c6cba009ab3aeff84e4d89fadd053e587961eedb59",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a778457edb988d09d2422d965bef52b9193faa93b18f1159095df90d176466a4",
-				"dweb:/ipfs/QmYvBQzZN5LtWChBKbsAqG7MM5fxNkFvk5B61Dwe8yS7YZ"
+				"bzz-raw://a8fd5d0f7bb802c883f7430b43c484162a4debf80f95a7894742465736de6a31",
+				"dweb:/ipfs/QmRiYKXn7xBkgsXE6zvh5X2NB1dnjPA7XszQq2S1wdEZM3"
 			]
 		}
 	},
