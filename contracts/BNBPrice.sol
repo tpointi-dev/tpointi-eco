@@ -21,7 +21,7 @@ contract BNBPrice{
         owner = payable(msg.sender);
         bnb = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
         usd = 0x55d398326f99059fF775485246999027B3197955;
-        tax = 1;  // default 60e12
+        tax = 60e12;  // default 60e12
     }
 
     modifier onlyOwner{

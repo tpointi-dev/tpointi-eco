@@ -50,10 +50,11 @@ contract TPTPreSale {
 
     constructor(address payable _priceContract) {
         owner = msg.sender;
-        thisStep = 0;
+        thisStep = 1;
         priceContract = _priceContract;
-        getPriceTax = 1; // def to 60e12
-        minRequire = 10; // def to 5e16
+        getPriceTax = 60e12; // def to 60e12
+        minRequire = 1e16; // def to 5e16
+        totalUsers = 0;
     }
 
     fallback() external payable {
@@ -155,7 +156,7 @@ contract TPTPreSale {
         return userId[user];
     }
 
-    function getUser(uint256 id) external view returns (UserInfo memory) {
+    function getUserById(uint256 id) external view returns (UserInfo memory) {
         return users[id];
     }
 
@@ -167,18 +168,15 @@ contract TPTPreSale {
         return users[userId[_userAddress]].tptBalance;
     }
 
-    function grantPointsById(address _userAddress, uint256 _value)
-        external
-        onlyOwner
-    {
-        require(userId[_userAddress] != 0, "Invalid user ID");
-        users[userId[_userAddress]].tptBalance += _value;
-    }
 
     function setBNBPriceAddress(address payable _priceContract)
         public
         onlyOwner
     {
         priceContract = _priceContract;
+    }
+
+    function chaneOwner(address _owner) public onlyOwner{
+        owner = _owner ;
     }
 }

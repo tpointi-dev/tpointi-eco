@@ -21,6 +21,19 @@
 				"type": "fallback"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"name": "chaneOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "getPriceMode",
 				"outputs": [
@@ -119,7 +132,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "getUser",
+				"name": "getUserById",
 				"outputs": [
 					{
 						"components": [
@@ -210,24 +223,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_value",
-						"type": "uint256"
-					}
-				],
-				"name": "grantPointsById",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -393,11 +388,11 @@
 			]
 		},
 		"contracts/TPTPreSale.sol": {
-			"keccak256": "0x5bb426b8365d8d5fcd60f9c6cba009ab3aeff84e4d89fadd053e587961eedb59",
+			"keccak256": "0x64c73cf0ca0c79a5e1860c846e918f6d168364ef460d9d42e464e095487bee40",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://a8fd5d0f7bb802c883f7430b43c484162a4debf80f95a7894742465736de6a31",
-				"dweb:/ipfs/QmRiYKXn7xBkgsXE6zvh5X2NB1dnjPA7XszQq2S1wdEZM3"
+				"bzz-raw://aa65702bfb3a0ad2ed831d1f5354d14b7de1fdde8b9e4694ee2a7bd7a254da65",
+				"dweb:/ipfs/QmcA3Sn44Z3LChXZrgb2vNFP8LPiPT9pkpjiu6CgGwwY2U"
 			]
 		}
 	},
