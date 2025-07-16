@@ -29,8 +29,8 @@ contract TPTPreSale {
     mapping(uint8 => uint256) public tptStepPrice;
     uint256 internal getPriceTax;
     uint256 internal minRequire;
-    // User Details
     uint256 public totalUsers;
+    uint public totalPurchase;
 
     struct Purchase {
         uint256 timestamp;
@@ -79,7 +79,7 @@ contract TPTPreSale {
         require(msg.value >= minRequire, "Send more BNB to buy TPT");
         require(msg.data.length >= 32, "Invalid data length");
         if (abi.decode(msg.data, (bool))) {
-            require(msg.value == 5e16, "send just 0.05 bnb");
+            require(msg.value == 5e16, "send just equal 0.05 bnb");
         }
         (bool sent, ) = priceContract.call{value: getPriceTax}("");
         require(sent, "Transfer failed");
@@ -112,8 +112,7 @@ contract TPTPreSale {
     // 8 45506000000000
     // 9 77360000000000
     //10 100000000000000
-    // 1515552247497953 usdbnb 16d    value : 151169269202239400  => 100$
-    // offer ? 13196508 : 6598254
+    
     function buyTPT(bool _useOffer) internal pauseable reentrancy {
         if (userId[msg.sender] == 0) {
             totalUsers++;
@@ -123,25 +122,34 @@ contract TPTPreSale {
             userInfo.walletAddress = msg.sender;
             userInfo.tptBalance = 0;
             userInfo.hasOffer = true;
-
-            // Save User
             users[userId[msg.sender]] = userInfo;
-        }
-        uint256 usdBnbPrice = IBNBPrice(priceContract).viewAverage();
+        }        
         uint256 amount;
         if (_useOffer) {
             require(users[userId[msg.sender]].hasOffer, "no offer more");
-            amount =
-                (((msg.value * 1e18) / usdBnbPrice) / tptStepPrice[thisStep]) *
-                2;
+            amount = calcAmount(_useOffer, msg.value);
             users[userId[msg.sender]].hasOffer = false;
         } else {
-            amount = ((msg.value * 1e18) / usdBnbPrice) / tptStepPrice[thisStep];
+            amount  = calcAmount(_useOffer, msg.value);
         }
         users[userId[msg.sender]].tptBalance += amount;
         users[userId[msg.sender]].purchaseList.push(
             Purchase(block.timestamp, msg.value, amount, thisStep)
         );
+        totalPurchase += amount;
+    }
+
+    function calcAmount(bool _useOffer, uint256 bnbValue) public view returns (uint256){
+        uint256 usdBnbPrice = IBNBPrice(priceContract).viewAverage();
+        uint256 amount;
+        if (_useOffer) {
+            amount =
+                (((bnbValue * 1e18) / usdBnbPrice) / tptStepPrice[thisStep]) *
+                2;
+        } else {
+            amount = ((bnbValue * 1e18) / usdBnbPrice) / tptStepPrice[thisStep];
+        }
+        return amount;
     }
 
     function setThisStep(uint8 _step) public onlyOwner {

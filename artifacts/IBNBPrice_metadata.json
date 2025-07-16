@@ -131,11 +131,11 @@
 	},
 	"sources": {
 		"contracts/TPTPreSale_flattened.sol": {
-			"keccak256": "0x297ef062f2479f205a9719fe3bad1a6c039074fd878202ef70fdd559c15a00f7",
+			"keccak256": "0x69adc0f7680a6d3cff25d60af2a9b505c0c20a968a842a8bb50ab46f60e00ec2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7295679471d77325167e505871a3c01f3a0cccc593117388642d6862192ad60d",
-				"dweb:/ipfs/QmXEsVVXdWjYxUASA4XUyrFpmDekTfFWA7URtiGyxcnceD"
+				"bzz-raw://06baa46af046a92e4b396d84298bf95b931d0ac3a080aaa1d87951920247745d",
+				"dweb:/ipfs/QmXf8e2WmhbGkPDvEKCz8c8zHqbrEJ2cgcYunBP9XGKjJ3"
 			]
 		}
 	},
