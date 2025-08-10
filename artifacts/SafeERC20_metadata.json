@@ -1,0 +1,92 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "spender",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentAllowance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "requestedDecrease",
+						"type": "uint256"
+					}
+				],
+				"name": "SafeERC20FailedDecreaseAllowance",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "SafeERC20FailedOperation",
+				"type": "error"
+			}
+		],
+		"devdoc": {
+			"details": "Wrappers around ERC-20 operations that throw on failure (when the token contract returns false). Tokens that return no value (and instead revert or throw on failure) are also supported, non-reverting calls are assumed to be successful. To use this library you can add a `using SafeERC20 for IERC20;` statement to your contract, which allows you to call the safe operations as `token.safeTransfer(...)`, etc.",
+			"errors": {
+				"SafeERC20FailedDecreaseAllowance(address,uint256,uint256)": [
+					{
+						"details": "Indicates a failed `decreaseAllowance` request."
+					}
+				],
+				"SafeERC20FailedOperation(address)": [
+					{
+						"details": "An operation with an ERC-20 token failed."
+					}
+				]
+			},
+			"kind": "dev",
+			"methods": {},
+			"title": "SafeERC20",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TPointINet_flattened.sol": "SafeERC20"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"TPointINet_flattened.sol": {
+			"keccak256": "0x2e865fa4994e3dbb04f8a4eb978a9f5323f0a1317dd65141c90228d852c90b10",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://162c639af10e4dd59d6c06546ee0d60875c20e0886939366693abff2fda7b29d",
+				"dweb:/ipfs/QmW6qXvXoZC5fYWo4QUJLk6Hbhzh2uedJfm12GN5kYoiVL"
+			]
+		}
+	},
+	"version": 1
+}

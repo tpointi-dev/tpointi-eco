@@ -32,19 +32,22 @@ contract TPointINet is Context {
     mapping(uint24 => address) public eligibleUsers; //should set to internal
 
     uint8 internal timeCycle;
-    uint24 public eligibleCount; //should set to internal
-    uint24 public rewardTotalPoints; // should set to internal
+    uint24 internal eligibleCount;
+    uint24 internal rewardTotalPoints;
     uint32 internal totalRegistered;
     uint256 internal rewardStartTime;
     uint256 internal pendingParticipants;
-    uint256 public rewardUnitPrice; // should set to internal
+    uint256 internal claimedParticipants;
+    uint256 internal rewardUnitPrice;
     uint8[6] internal uplineRewardList = [30, 20, 10, 10, 5, 5];
     uint256 internal maxProfit;
     uint32 internal cycleCount;
+    uint256 internal winnerPrize;
 
     address internal owner;
     address internal operator;
     address internal rewardWriter;
+    address internal lotteryWinner;
 
     bool internal isLocked;
     string internal ipfsHash;
@@ -74,17 +77,16 @@ contract TPointINet is Context {
     constructor(
         address _operator,
         address _first,
-        address _leftDirect,
         address _usdt,
         uint8 _timeCycle,
         uint _maxProfit
     ) {
-        owner = _msgSender();
+        owner = 0x39D7202B6195a8Cdb5c381cD7de7De79987161C4;
         operator = _operator;
         // 0x55d398326f99059fF775485246999027B3197955
+        totalRegistered = 1;
         usdt = IERC20(_usdt);
         idToAddress[totalRegistered] = _first;
-        totalRegistered = 1;
         maxProfit = _maxProfit * 1e18;
 
         UserModel memory _user = UserModel({
@@ -96,11 +98,11 @@ contract TPointINet is Context {
             directsCount: 1,
             isNotFirst: false,
             upLine: address(0),
-            leftDirect: _leftDirect,
+            leftDirect: address(0),
             rightDirect: address(0),
             registrationTime: block.timestamp,
             totalClaimed: maxProfit,
-            remainingRewards: maxProfit
+            remainingRewards: 0
         });
 
         userInfo[_first] = _user;
@@ -119,7 +121,9 @@ contract TPointINet is Context {
         address currentUpline = _upline;
         while (currentUpline != address(0) && uplineIndex <= 5) {
             uint256 reward = uplineRewardList[uplineIndex] * 1e17;
-            usdt.safeTransfer(currentUpline, reward);
+            if(currentUpline != idToAddress[1]){
+                usdt.safeTransfer(currentUpline, reward);
+            }
             userInfo[currentUpline].totalClaimed += reward;
             currentUpline = userInfo[currentUpline].upLine;
             uplineIndex++;
@@ -264,9 +268,9 @@ contract TPointINet is Context {
     }
 
     function _calculatePointUnitValue() private view returns (uint256) {
-
-        uint256 totalRewardPool = ((pendingParticipants * 90) *
-            10 ** 18);
+        uint256 totalRewardPool = (((pendingParticipants -
+            claimedParticipants) * 90) + (claimedParticipants * 100)) *
+            10 ** 18;
         return totalRewardPool / _getTotalQualifiedPoints();
     }
 
@@ -274,21 +278,9 @@ contract TPointINet is Context {
         return timeCycle;
     }
 
-    function _randomBetween(uint256 number) private view returns (uint256) {
-        return
-            (uint256(
-                keccak256(
-                    abi.encodePacked(
-                        block.timestamp,
-                        block.prevrandao,
-                        msg.sender
-                    )
-                )
-            ) % number) + 1;
-    }
     function _handleLottery() private {
         uint winners = cycleLottery[cycleCount].length;
-        uint256 winnerPrize = usdt.balanceOf(address(this));
+        winnerPrize = usdt.balanceOf(address(this));
 
         uint256 rand = uint256(
             keccak256(
@@ -302,9 +294,9 @@ contract TPointINet is Context {
             )
         );
         uint256 winnerIndex = rand % winners;
-        usdt.safeTransfer(cycleLottery[cycleCount][winnerIndex], winnerPrize);
-        userInfo[cycleLottery[cycleCount][winnerIndex]]
-            .totalClaimed += winnerPrize;
+        lotteryWinner = cycleLottery[cycleCount][winnerIndex];
+        usdt.safeTransfer(lotteryWinner, winnerPrize);
+        userInfo[lotteryWinner].totalClaimed += winnerPrize;
     }
 
     function _handleWriterReward(
@@ -369,6 +361,8 @@ contract TPointINet is Context {
 
         rewardStartTime = block.timestamp;
         pendingParticipants = 0;
+        claimedParticipants = 0;
+
         eligibleCount = 0;
 
         uint writerRewardAmount = usdt.balanceOf(address(this)) / 2;
@@ -421,7 +415,6 @@ contract TPointINet is Context {
         return (rewardUnitPrice / 10 ** 18, rewardWriter, rewardTotalPoints);
     }
 
-
     function getUserWeakerSidePoints(
         address user
     ) public view returns (uint32) {
@@ -459,12 +452,29 @@ contract TPointINet is Context {
 
     function reInvest() external onlyEOA noReentrant {
         require(_isUserExists(_msgSender()), "User not registered");
+        require(
+            userInfo[_msgSender()].remainingRewards < 5000,
+            "Remaining rewards exceed limit"
+        );
+
         usdt.safeTransferFrom(_msgSender(), address(this), 100 * 10 ** 18);
         address upline = userInfo[_msgSender()].upLine;
         _handleUniLevelRewards(upline);
+
         userInfo[_msgSender()].remainingRewards += maxProfit;
         if (userInfo[upline].remainingRewards > 0) {
             cycleLottery[cycleCount].push(upline);
+        }
+        recentParticipants[pendingParticipants] = _msgSender();
+        pendingParticipants++;
+        claimedParticipants++;
+
+        if (!userInfo[_msgSender()].isNotFirst) {
+            userInfo[userInfo[_msgSender()].upLine].leftPoints++;
+            userInfo[userInfo[_msgSender()].upLine].totalLeftPoints++;
+        } else {
+            userInfo[userInfo[_msgSender()].upLine].rightPoints++;
+            userInfo[userInfo[_msgSender()].upLine].totalRightPoints++;
         }
     }
 
@@ -472,5 +482,15 @@ contract TPointINet is Context {
         require(msg.sender == owner, "Only owner can change");
         require(newOwner != address(0), "Invalid address");
         owner = newOwner;
+    }
+
+    function getLotteryWinner() external view returns (address, uint256) {
+        return (lotteryWinner, winnerPrize);
+    }
+
+    function setOperator(address _operator) external {
+        require(msg.sender == owner, "Only owner can change");
+        require(_operator != address(0), "Invalid address");
+        operator = _operator;
     }
 }
