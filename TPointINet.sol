@@ -29,7 +29,7 @@ contract TPointINet is Context {
     mapping(address => UserModel) internal userInfo;
     mapping(uint256 => address) internal recentParticipants;
     mapping(uint32 => address[]) internal cycleLottery;
-    mapping(uint24 => address) public eligibleUsers; //should set to internal
+    mapping(uint24 => address) internal eligibleUsers;
 
     uint8 internal timeCycle;
     uint24 internal eligibleCount;
@@ -110,6 +110,10 @@ contract TPointINet is Context {
         totalRegistered++;
         timeCycle = _timeCycle;
         isLocked = false;
+    }
+
+    function getUSDTAddress() external view returns (address) {
+        return address(usdt);
     }
 
     function _isUserExists(address user) private view returns (bool) {
@@ -313,10 +317,8 @@ contract TPointINet is Context {
         );
         require(_isUserExists(_msgSender()), "User not registered");
 
-        // Calculate eligible users and set in eligibleUsers mapping
         _calculateEligibleUsers();
 
-        // Calculate total reward points
         rewardTotalPoints = _getTotalQualifiedPoints();
         require(rewardTotalPoints > 0, "No qualified points");
 
@@ -402,7 +404,6 @@ contract TPointINet is Context {
         return usdt.balanceOf(address(this)) / 10 ** 18;
     }
 
-    //check with test
     function getLastRewardInfo()
         public
         view
@@ -478,10 +479,9 @@ contract TPointINet is Context {
         }
     }
 
-    function setOwner(address newOwner) external {
+    function reNounceOwnership() external {
         require(msg.sender == owner, "Only owner can change");
-        require(newOwner != address(0), "Invalid address");
-        owner = newOwner;
+        owner = address(0);
     }
 
     function getLotteryWinner() external view returns (address, uint256) {
@@ -493,4 +493,13 @@ contract TPointINet is Context {
         require(_operator != address(0), "Invalid address");
         operator = _operator;
     }
+
+    function getOperator() external view returns (address) {
+        return operator;
+    }
+
+    function getOwner() external view returns (address) {
+        return owner;
+    }
+
 }
