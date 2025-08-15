@@ -5,7 +5,7 @@ import {Context} from "@openzeppelin/contracts/utils/Context.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
-contract TPointINet is Context {
+contract TPointINet_V_0_01 is Context {
     using SafeERC20 for IERC20;
     IERC20 internal usdt;
 
@@ -41,11 +41,12 @@ contract TPointINet is Context {
     uint256 internal rewardUnitPrice;
     uint8[6] internal uplineRewardList = [30, 20, 10, 10, 5, 5];
     uint256 internal maxProfit;
+    uint256 internal equalZero;
     uint32 internal cycleCount;
     uint256 internal winnerPrize;
+    uint256 internal writerRewardAmount;
 
     address internal owner;
-    address internal operator;
     address internal rewardWriter;
     address internal lotteryWinner;
 
@@ -62,8 +63,8 @@ contract TPointINet is Context {
         _;
     }
 
-    modifier onlyOperator() {
-        require(_msgSender() == operator, "Caller is not the operator");
+    modifier onlyOwner() {
+        require(_msgSender() == owner, "Caller is not the owner");
         _;
     }
 
@@ -75,19 +76,20 @@ contract TPointINet is Context {
     }
 
     constructor(
-        address _operator,
+        address _owner,
         address _first,
         address _usdt,
         uint8 _timeCycle,
-        uint _maxProfit
-    ) {
-        owner = 0x39D7202B6195a8Cdb5c381cD7de7De79987161C4;
-        operator = _operator;
-        // 0x55d398326f99059fF775485246999027B3197955
-        totalRegistered = 1;
+        uint _maxProfit    ) {
+        // owner = 0x39D7202B6195a8Cdb5c381cD7de7De79987161C4;
+        owner = _owner;
+        // usdt = 0x55d398326f99059fF775485246999027B3197955;
         usdt = IERC20(_usdt);
+
+        totalRegistered = 1;
         idToAddress[totalRegistered] = _first;
-        maxProfit = _maxProfit * 1e18;
+        maxProfit = _maxProfit * 1e18 * 2;
+        equalZero = _maxProfit * 1e18;
 
         UserModel memory _user = UserModel({
             id: totalRegistered,
@@ -101,7 +103,7 @@ contract TPointINet is Context {
             leftDirect: address(0),
             rightDirect: address(0),
             registrationTime: block.timestamp,
-            totalClaimed: maxProfit,
+            totalClaimed: 0,
             remainingRewards: 0
         });
 
@@ -125,7 +127,7 @@ contract TPointINet is Context {
         address currentUpline = _upline;
         while (currentUpline != address(0) && uplineIndex <= 5) {
             uint256 reward = uplineRewardList[uplineIndex] * 1e17;
-            if(currentUpline != idToAddress[1]){
+            if (currentUpline != idToAddress[1]) {
                 usdt.safeTransfer(currentUpline, reward);
             }
             userInfo[currentUpline].totalClaimed += reward;
@@ -174,15 +176,22 @@ contract TPointINet is Context {
         }
         userInfo[_upline].directsCount++;
         totalRegistered++;
-        cycleLottery[cycleCount].push(_upline);
+        if(_upline != idToAddress[1]) {
+            cycleLottery[cycleCount].push(_upline);
+        }
     }
 
     function activateUser(address _upline) external onlyEOA {
         _handleRegistration(_upline);
     }
 
-    function getUserInfo(address _user) public view returns (UserModel memory) {
-        return userInfo[_user];
+    function getUserInfo(
+        address _user
+    ) public view returns (UserModel memory userModel) {
+        userModel = userInfo[_user];
+        // userModel.totalClaimed = userModel.totalClaimed / 1e18;
+        // userModel.remainingRewards = (userModel.remainingRewards - equalZero) / 1e18;
+        return userModel;
     }
 
     function getUserUpline(address user) public view returns (address) {
@@ -211,7 +220,7 @@ contract TPointINet is Context {
     function _getUserRewardablePoints(
         address user
     ) private view returns (uint24) {
-        if (userInfo[user].remainingRewards == 0) {
+        if (userInfo[user].remainingRewards <= equalZero) {
             return 0;
         } else {
             uint24 minPoints = userInfo[user].leftPoints <=
@@ -286,17 +295,14 @@ contract TPointINet is Context {
         uint winners = cycleLottery[cycleCount].length;
         winnerPrize = usdt.balanceOf(address(this));
 
-        uint256 rand = uint256(
-            keccak256(
-                abi.encodePacked(
-                    blockhash(block.number - 1),
-                    block.timestamp,
-                    msg.sender,
-                    block.prevrandao,
-                    winners
+        uint256 rand;
+        while (rand == 0) {
+            rand = uint256(
+                keccak256(
+                    abi.encodePacked(block.prevrandao, block.timestamp, winners)
                 )
-            )
-        );
+            );
+        }
         uint256 winnerIndex = rand % winners;
         lotteryWinner = cycleLottery[cycleCount][winnerIndex];
         usdt.safeTransfer(lotteryWinner, winnerPrize);
@@ -308,6 +314,7 @@ contract TPointINet is Context {
         uint256 amount
     ) private {
         usdt.safeTransfer(_rewardWriter, amount);
+        userInfo[_rewardWriter].totalClaimed += amount;
     }
 
     function claimReward() external onlyEOA noReentrant {
@@ -322,7 +329,6 @@ contract TPointINet is Context {
         rewardTotalPoints = _getTotalQualifiedPoints();
         require(rewardTotalPoints > 0, "No qualified points");
 
-        rewardWriter = _msgSender();
         rewardUnitPrice = _calculatePointUnitValue();
 
         for (uint24 i = 0; i < eligibleCount; i++) {
@@ -355,9 +361,7 @@ contract TPointINet is Context {
             usdt.safeTransfer(_userAddress, usdtAmount);
 
             user.totalClaimed += usdtAmount;
-            user.remainingRewards = user.remainingRewards <= usdtAmount
-                ? 0
-                : user.remainingRewards - usdtAmount;
+            user.remainingRewards = (user.remainingRewards - usdtAmount);
             userInfo[_userAddress] = user;
         }
 
@@ -367,15 +371,12 @@ contract TPointINet is Context {
 
         eligibleCount = 0;
 
-        uint writerRewardAmount = usdt.balanceOf(address(this)) / 2;
+        writerRewardAmount = usdt.balanceOf(address(this)) / 2;
+        rewardWriter = _msgSender();
 
         _handleWriterReward(rewardWriter, writerRewardAmount);
         _handleLottery();
         cycleCount++;
-    }
-
-    function setTimeCycle(uint8 _timeCycle) external onlyOperator {
-        timeCycle = _timeCycle <= 24 ? _timeCycle : 24;
     }
 
     function getUserLeftRightPoints(
@@ -404,16 +405,29 @@ contract TPointINet is Context {
         return usdt.balanceOf(address(this)) / 10 ** 18;
     }
 
-    function getLastRewardInfo()
+    function getLastCycleInfo()
         public
         view
         returns (
             uint256 lastUnitReward,
             address lastRewardWriter,
-            uint24 lastTotalPoints
+            uint256 lastWriterReward,
+            uint24 lastTotalPoints,
+            uint256 totalRewards,
+            address lotteryUser,
+            uint256 lotteryWinnerReward
         )
     {
-        return (rewardUnitPrice / 10 ** 18, rewardWriter, rewardTotalPoints);
+        totalRewards = rewardTotalPoints * rewardUnitPrice;
+        return (
+            rewardUnitPrice / 10 ** 18,
+            rewardWriter,
+            writerRewardAmount / 10 ** 18,
+            rewardTotalPoints,
+            totalRewards / 10 ** 18,
+            lotteryWinner,
+            winnerPrize / 10 ** 18
+        );
     }
 
     function getUserWeakerSidePoints(
@@ -435,7 +449,7 @@ contract TPointINet is Context {
         return userInfo[user].totalLeftPoints + userInfo[user].totalRightPoints;
     }
 
-    function getTodayRegisteredUsers() public view returns (address[] memory) {
+    function getCycleRegisteredUsers() public view returns (address[] memory) {
         address[] memory ret = new address[](pendingParticipants);
         for (uint256 i = 0; i < pendingParticipants; i++) {
             ret[i] = recentParticipants[i];
@@ -443,18 +457,10 @@ contract TPointINet is Context {
         return ret;
     }
 
-    function writeIPFS(string memory hash) external onlyOperator {
-        ipfsHash = hash;
-    }
-
-    function getIPFS() external view returns (string memory) {
-        return ipfsHash;
-    }
-
     function reInvest() external onlyEOA noReentrant {
         require(_isUserExists(_msgSender()), "User not registered");
         require(
-            userInfo[_msgSender()].remainingRewards < 5000,
+            userInfo[_msgSender()].remainingRewards < maxProfit,
             "Remaining rewards exceed limit"
         );
 
@@ -462,8 +468,8 @@ contract TPointINet is Context {
         address upline = userInfo[_msgSender()].upLine;
         _handleUniLevelRewards(upline);
 
-        userInfo[_msgSender()].remainingRewards += maxProfit;
-        if (userInfo[upline].remainingRewards > 0) {
+        userInfo[_msgSender()].remainingRewards += equalZero;
+        if (userInfo[upline].remainingRewards > equalZero) {
             cycleLottery[cycleCount].push(upline);
         }
         recentParticipants[pendingParticipants] = _msgSender();
@@ -479,37 +485,84 @@ contract TPointINet is Context {
         }
     }
 
-    function reNounceOwnership() external {
-        require(msg.sender == owner, "Only owner can change");
-        owner = address(0);
-    }
-
-    function getLotteryWinner() external view returns (address, uint256) {
-        return (lotteryWinner, winnerPrize);
-    }
-
-    function setOperator(address _operator) external {
-        require(msg.sender == owner, "Only owner can change");
-        require(_operator != address(0), "Invalid address");
-        operator = _operator;
-    }
-
-    function getOperator() external view returns (address) {
-        return operator;
+    function reNounceOwnership(address _newOwner) external onlyOwner() {
+        owner = _newOwner;
     }
 
     function getOwner() external view returns (address) {
         return owner;
     }
 
-    function remainingCycleTime() external view returns (uint256, uint256) {
+    function _uintToString(
+        uint256 _value
+    ) internal pure returns (string memory) {
+        if (_value == 0) return "0";
+        uint256 temp = _value;
+        uint256 digits;
+        while (temp != 0) {
+            digits++;
+            temp /= 10;
+        }
+        bytes memory buffer = new bytes(digits);
+        while (_value != 0) {
+            digits -= 1;
+            buffer[digits] = bytes1(uint8(48 + uint256(_value % 10)));
+            _value /= 10;
+        }
+        return string(buffer);
+    }
+
+    function getRemainingCycleTime()
+        external
+        view
+        returns (string memory remainingTime, string memory endTime)
+    {
         uint256 cycleEndTime = rewardStartTime + (timeCycle * 1 hours);
+        uint256 endHour = (cycleEndTime / 3600) % 24;
+        uint256 endMinute = (cycleEndTime / 60) % 60;
+        uint256 endSecond = cycleEndTime % 60;
+
         if (block.timestamp >= cycleEndTime) {
-            return (0, 0);
+            return (
+                string(
+                    "Cycle ended, Ready to claim rewards"
+                ),
+                string(
+                    abi.encodePacked(
+                        _uintToString(endHour),
+                            " : ",
+                            _uintToString(endMinute),
+                            " : ",
+                            _uintToString(endSecond),
+                            " UTC"
+                        )
+                    )
+                
+            );
         }
         uint256 remainingMinutes = (cycleEndTime - block.timestamp) / 60;
         uint256 remainingSeconds = (cycleEndTime - block.timestamp) % 60;
-        return (remainingMinutes, remainingSeconds);
+
+        return (
+            string(
+                abi.encodePacked(
+                    "Waiting for ",
+                    _uintToString(remainingMinutes),
+                    " minutes and ",
+                    _uintToString(remainingSeconds),
+                    " seconds"
+                )
+            ),
+            string(abi.encodePacked(_uintToString(endHour), " : ", _uintToString(endMinute)," : ", _uintToString(endSecond), " UTC"))
+        );
     }
 
+
+
+    function getRemainingRewards(address _user) external view returns (uint256) {
+
+        return userInfo[_user].remainingRewards <= equalZero
+            ? 0
+            : (userInfo[_user].remainingRewards - equalZero) / 1e18;
+    }
 }

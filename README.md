@@ -1,1 +1,0 @@
-# tpointi-eco

@@ -574,7 +574,7 @@ contract TPointINet is Context {
         isLocked = false;
     }
 
-    function getUSDTAddress() external view returns (address) {
+    function approveUsdTether() external view returns (address) {
         return address(usdt);
     }
 
@@ -639,7 +639,7 @@ contract TPointINet is Context {
         cycleLottery[cycleCount].push(_upline);
     }
 
-    function registerUser(address _upline) external onlyEOA {
+    function activateUser(address _upline) external onlyEOA {
         _handleRegistration(_upline);
     }
 
@@ -962,6 +962,16 @@ contract TPointINet is Context {
 
     function getOwner() external view returns (address) {
         return owner;
+    }
+
+    function remainingCycleTime() external view returns (uint256, uint256) {
+        uint256 cycleEndTime = rewardStartTime + (timeCycle * 1 hours);
+        if (block.timestamp >= cycleEndTime) {
+            return (0, 0);
+        }
+        uint256 remainingMinutes = (cycleEndTime - block.timestamp) / 60;
+        uint256 remainingSeconds = (cycleEndTime - block.timestamp) % 60;
+        return (remainingMinutes, remainingSeconds);
     }
 
 }
