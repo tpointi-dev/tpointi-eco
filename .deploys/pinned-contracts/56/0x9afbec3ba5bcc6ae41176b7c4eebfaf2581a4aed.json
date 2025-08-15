@@ -1,14 +1,7 @@
 {
-  "name": "TPointINet",
-  "address": "0x5742d1e0728f8aeb303a36fb1774afd9273aa55f",
+  "name": "TPointINet_V_0_01",
+  "address": "0x9afbec3ba5bcc6ae41176b7c4eebfaf2581a4aed",
   "abi": [
-    {
-      "inputs": [],
-      "name": "claimReward",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
     {
       "inputs": [
         {
@@ -17,7 +10,14 @@
           "type": "address"
         }
       ],
-      "name": "registerUser",
+      "name": "activateUser",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "claimReward",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -33,7 +33,20 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_operator",
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "reNounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
           "type": "address"
         },
         {
@@ -72,66 +85,8 @@
       "type": "error"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_operator",
-          "type": "address"
-        }
-      ],
-      "name": "setOperator",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "newOwner",
-          "type": "address"
-        }
-      ],
-      "name": "setOwner",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint8",
-          "name": "_timeCycle",
-          "type": "uint8"
-        }
-      ],
-      "name": "setTimeCycle",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "string",
-          "name": "hash",
-          "type": "string"
-        }
-      ],
-      "name": "writeIPFS",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "uint24",
-          "name": "",
-          "type": "uint24"
-        }
-      ],
-      "name": "eligibleUsers",
+      "inputs": [],
+      "name": "approveUsdTether",
       "outputs": [
         {
           "internalType": "address",
@@ -181,12 +136,12 @@
     },
     {
       "inputs": [],
-      "name": "getIPFS",
+      "name": "getCycleRegisteredUsers",
       "outputs": [
         {
-          "internalType": "string",
+          "internalType": "address[]",
           "name": "",
-          "type": "string"
+          "type": "address[]"
         }
       ],
       "stateMutability": "view",
@@ -194,7 +149,7 @@
     },
     {
       "inputs": [],
-      "name": "getLastRewardInfo",
+      "name": "getLastCycleInfo",
       "outputs": [
         {
           "internalType": "uint256",
@@ -207,9 +162,29 @@
           "type": "address"
         },
         {
+          "internalType": "uint256",
+          "name": "lastWriterReward",
+          "type": "uint256"
+        },
+        {
           "internalType": "uint24",
           "name": "lastTotalPoints",
           "type": "uint24"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalRewards",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "lotteryUser",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lotteryWinnerReward",
+          "type": "uint256"
         }
       ],
       "stateMutability": "view",
@@ -217,13 +192,45 @@
     },
     {
       "inputs": [],
-      "name": "getLotteryWinner",
+      "name": "getOwner",
       "outputs": [
         {
           "internalType": "address",
           "name": "",
           "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getRemainingCycleTime",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "remainingTime",
+          "type": "string"
         },
+        {
+          "internalType": "string",
+          "name": "endTime",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "getRemainingRewards",
+      "outputs": [
         {
           "internalType": "uint256",
           "name": "",
@@ -241,19 +248,6 @@
           "internalType": "uint256",
           "name": "",
           "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "getTodayRegisteredUsers",
-      "outputs": [
-        {
-          "internalType": "address[]",
-          "name": "",
-          "type": "address[]"
         }
       ],
       "stateMutability": "view",
@@ -374,8 +368,8 @@
               "type": "uint256"
             }
           ],
-          "internalType": "struct TPointINet.UserModel",
-          "name": "",
+          "internalType": "struct TPointINet_V_0_01.UserModel",
+          "name": "userModel",
           "type": "tuple"
         }
       ],
@@ -464,6 +458,6 @@
       "type": "function"
     }
   ],
-  "filePath": "tpointi-eco-1752011487303/TPointINet.sol",
-  "pinnedAt": 1754839213430
+  "filePath": "tpointi-eco-1752011487303/TPointINet_V_0_01.sol",
+  "pinnedAt": 1755269462196
 }

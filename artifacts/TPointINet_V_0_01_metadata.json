@@ -470,18 +470,208 @@
 				]
 			},
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"activateUser(address)": {
+					"details": "This function allows a user to register under an existing upline.",
+					"params": {
+						"_upline": "The address of the upline to register the user under."
+					}
+				},
+				"approveUsdTether()": {
+					"returns": {
+						"_0": "UsdTether contract address."
+					}
+				},
+				"claimReward()": {
+					"details": "This function can only be called by externally owned accounts (EOA)."
+				},
+				"getAllRegisteredUsersInRange(uint32,uint32)": {
+					"params": {
+						"end": "The ending index of the range.",
+						"start": "The starting index of the range."
+					},
+					"returns": {
+						"_0": "An array of addresses representing the registered users in the specified range."
+					}
+				},
+				"getContractUSDTBalance()": {
+					"returns": {
+						"_0": "The USDT balance of the contract."
+					}
+				},
+				"getCycleRegisteredUsers()": {
+					"returns": {
+						"_0": "Total registered users in this cycle."
+					}
+				},
+				"getLastCycleInfo()": {
+					"returns": {
+						"lastRewardWriter": "The address of the last reward writer.",
+						"lastTotalPoints": "The last total points.",
+						"lastUnitReward": "The last unit reward.",
+						"lastWriterReward": "The last writer reward.",
+						"lotteryUser": "The address of the lottery user.",
+						"lotteryWinnerReward": "The lottery winner reward.",
+						"totalRewards": "The total rewards."
+					}
+				},
+				"getOwner()": {
+					"returns": {
+						"_0": "The address of the contract owner."
+					}
+				},
+				"getRemainingCycleTime()": {
+					"returns": {
+						"endTime": "The end time of the cycle.",
+						"remainingTime": "The time remaining until the cycle ends."
+					}
+				},
+				"getRemainingRewards(address)": {
+					"params": {
+						"_user": "The address of the user."
+					},
+					"returns": {
+						"_0": "The remaining rewards for the user."
+					}
+				},
+				"getTimeCycle()": {
+					"returns": {
+						"_0": "The time cycle duration in seconds."
+					}
+				},
+				"getTotalRegistered()": {
+					"returns": {
+						"_0": "The total number of registered users."
+					}
+				},
+				"getUserDirects(address)": {
+					"params": {
+						"user": "The address of the user to retrieve the directs for."
+					},
+					"returns": {
+						"left": "The address of the user's left direct.",
+						"right": "The address of the user's right direct."
+					}
+				},
+				"getUserInfo(address)": {
+					"params": {
+						"_user": "The address of the user to retrieve information for."
+					},
+					"returns": {
+						"userModel": "A UserModel struct containing the user's information."
+					}
+				},
+				"getUserLeftRightPoints(address)": {
+					"params": {
+						"user": "The address of the user to retrieve the points for."
+					},
+					"returns": {
+						"leftPoints": "The left points of the user.",
+						"rightPoints": "The right points of the user."
+					}
+				},
+				"getUserTotalTeam(address)": {
+					"params": {
+						"user": "The address of the user to retrieve the points for."
+					},
+					"returns": {
+						"_0": "The total team points of the user."
+					}
+				},
+				"getUserUpline(address)": {
+					"params": {
+						"user": "The address of the user to retrieve the upline for."
+					},
+					"returns": {
+						"_0": "The address of the user's upline."
+					}
+				},
+				"getUserWeakerSidePoints(address)": {
+					"params": {
+						"user": "The address of the user to retrieve the points for."
+					},
+					"returns": {
+						"_0": "The weaker side points of the user."
+					}
+				},
+				"reNounceOwnership(address)": {
+					"params": {
+						"_newOwner": "The address of the new owner."
+					}
+				}
+			},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"activateUser(address)": {
+					"notice": "Activate a user by registering them with a specified upline.This function can only be called by externally owned accounts (EOAs)."
+				},
+				"approveUsdTether()": {
+					"notice": "Go to this contract(usdt) address and approve TPointiNet(this contract address) for registration."
+				},
+				"claimReward()": {
+					"notice": "Claim rewards, Close cycle and Distribute rewards."
+				},
+				"getAllRegisteredUsersInRange(uint32,uint32)": {
+					"notice": "Get all registered users within a specific range."
+				},
+				"getContractUSDTBalance()": {
+					"notice": "Get the USDT balance of the contract."
+				},
+				"getCycleRegisteredUsers()": {
+					"notice": "Get total registered users in this cycle."
+				},
+				"getLastCycleInfo()": {
+					"notice": "Get the last cycle information."
+				},
+				"getOwner()": {
+					"notice": "Get the owner of the contract."
+				},
+				"getRemainingCycleTime()": {
+					"notice": "Get the remaining time for the current cycle."
+				},
+				"getRemainingRewards(address)": {
+					"notice": "Get the remaining rewards for a user."
+				},
+				"getTimeCycle()": {
+					"notice": "Get the time cycle duration."
+				},
+				"getTotalRegistered()": {
+					"notice": "Get the total number of registered users."
+				},
+				"getUserDirects(address)": {
+					"notice": "Get the direct children of a user."
+				},
+				"getUserInfo(address)": {
+					"notice": "Get information about a user."
+				},
+				"getUserLeftRightPoints(address)": {
+					"notice": "Get the left and right points of a user."
+				},
+				"getUserTotalTeam(address)": {
+					"notice": "Get the total team points of a user."
+				},
+				"getUserUpline(address)": {
+					"notice": "Get the upline of a user."
+				},
+				"getUserWeakerSidePoints(address)": {
+					"notice": "Get the weaker side points of a user."
+				},
+				"reInvest()": {
+					"notice": "Reinvest and recharge max profit."
+				},
+				"reNounceOwnership(address)": {
+					"notice": "Renounce ownership of the contract."
+				}
+			},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"TPointINet_V_0_01.sol": "TPointINet_V_0_01"
+			"TPointINet_V_0_01_flattened.sol": "TPointINet_V_0_01"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -495,68 +685,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/interfaces/IERC1363.sol": {
-			"keccak256": "0xd5ea07362ab630a6a3dee4285a74cf2377044ca2e4be472755ad64d7c5d4b69d",
+		"TPointINet_V_0_01_flattened.sol": {
+			"keccak256": "0x4586d56e19401efef3155f56b7a9e72434e4c89f800bb181acb038762f3182a9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://da5e832b40fc5c3145d3781e2e5fa60ac2052c9d08af7e300dc8ab80c4343100",
-				"dweb:/ipfs/QmTzf7N5ZUdh5raqtzbM11yexiUoLC9z3Ws632MCuycq1d"
-			]
-		},
-		"@openzeppelin/contracts/interfaces/IERC165.sol": {
-			"keccak256": "0x0afcb7e740d1537b252cb2676f600465ce6938398569f09ba1b9ca240dde2dfc",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://1c299900ac4ec268d4570ecef0d697a3013cd11a6eb74e295ee3fbc945056037",
-				"dweb:/ipfs/Qmab9owJoxcA7vJT5XNayCMaUR1qxqj1NDzzisduwaJMcZ"
-			]
-		},
-		"@openzeppelin/contracts/interfaces/IERC20.sol": {
-			"keccak256": "0x1a6221315ce0307746c2c4827c125d821ee796c74a676787762f4778671d4f44",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://1bb2332a7ee26dd0b0de9b7fe266749f54820c99ab6a3bcb6f7e6b751d47ee2d",
-				"dweb:/ipfs/QmcRWpaBeCYkhy68PR3B4AgD7asuQk7PwkWxrvJbZcikLF"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-			"keccak256": "0x74ed01eb66b923d0d0cfe3be84604ac04b76482a55f9dd655e1ef4d367f95bc2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://5282825a626cfe924e504274b864a652b0023591fa66f06a067b25b51ba9b303",
-				"dweb:/ipfs/QmeCfPykghhMc81VJTrHTC7sF6CRvaA1FXVq2pJhwYp1dV"
-			]
-		},
-		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
-			"keccak256": "0x982c5cb790ab941d1e04f807120a71709d4c313ba0bfc16006447ffbd27fbbd5",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://8150ceb4ac947e8a442b2a9c017e01e880b2be2dd958f1fa9bc405f4c5a86508",
-				"dweb:/ipfs/QmbcBmFX66AY6Kbhnd5gx7zpkgqnUafo43XnmayAM7zVdB"
-			]
-		},
-		"@openzeppelin/contracts/utils/Context.sol": {
-			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
-				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
-			]
-		},
-		"@openzeppelin/contracts/utils/introspection/IERC165.sol": {
-			"keccak256": "0x8891738ffe910f0cf2da09566928589bf5d63f4524dd734fd9cedbac3274dd5c",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://971f954442df5c2ef5b5ebf1eb245d7105d9fbacc7386ee5c796df1d45b21617",
-				"dweb:/ipfs/QmadRjHbkicwqwwh61raUEapaVEtaLMcYbQZWs9gUkgj3u"
-			]
-		},
-		"TPointINet_V_0_01.sol": {
-			"keccak256": "0x586f53a693748792c976a2ecdbe9f0dda834ad0253c6d20882b964ec2f9a8268",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://93ec54be61c463c97bffe084d49416f1ad0c4bf8bc3e9d455214474b2cf22468",
-				"dweb:/ipfs/QmRghhPHePCkMf5c6o26zQu9KdU8xtVF7ECuB1pbSwidoi"
+				"bzz-raw://f90120bb9ec3de31d30c5ec22ac31ac6ca58e8f923c5a22deb39cfcfd35d4c5b",
+				"dweb:/ipfs/QmPc3dM264TLYgEtsqiroYcSDateRwZS6hkfswrrynjqnd"
 			]
 		}
 	},
