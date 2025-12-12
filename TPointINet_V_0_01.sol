@@ -555,10 +555,10 @@ contract TPointINet_V_0_01 is Context {
 
         if (!userInfo[_msgSender()].isNotFirst) {
             userInfo[userInfo[_msgSender()].upLine].leftPoints++;
-            userInfo[userInfo[_msgSender()].upLine].totalLeftPoints++;
+            // userInfo[userInfo[_msgSender()].upLine].totalLeftPoints++;
         } else {
             userInfo[userInfo[_msgSender()].upLine].rightPoints++;
-            userInfo[userInfo[_msgSender()].upLine].totalRightPoints++;
+            // userInfo[userInfo[_msgSender()].upLine].totalRightPoints++;
         }
     }
 
